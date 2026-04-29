@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>2026年吉隆坡第六届「小菩萨快乐学佛营」报名表</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --brand:#D4500A;
+  --brand-light:#FAECE7;
+  --brand-mid:#E8621A;
+  --brand-dark:#9a3412;
+  --brand-subtle:#FFF7F4;
+  --text-primary:#0F0F0F;
+  --text-secondary:#5C5C5C;
+  --text-tertiary:#9A9A9A;
+  --border:#E5E5E5;
+  --border-focus:#D4500A;
+  --bg:#FAFAF8;
+  --bg-card:#FFFFFF;
+  --bg-input:#FFFFFF;
+  --success:#15803D;
+  --error:#DC2626;
+  --radius:12px;
+  --radius-sm:8px;
+  --radius-lg:16px;
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.08),0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:0 20px 48px rgba(0,0,0,0.12),0 8px 16px rgba(0,0,0,0.06);
+  --font-sans:'DM Sans','Noto Sans SC',system-ui,sans-serif;
+  --transition:0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--text-primary);
+  min-height:100vh;
+  line-height:1.6;
+}
+
+/* ── HEADER ── */
+.page-header{
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  padding:16px 24px;
+  position:sticky;top:0;z-index:100;
+}
+.header-inner{
+  max-width:680px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo-area{display:flex;align-items:center;gap:12px;}
+.logo-dot{
+  width:36px;height:36px;
+  background:linear-gradient(135deg,#F97316,#D4500A);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.logo-dot svg{width:18px;height:18px;fill:#fff;}
+.header-title{font-size:13px;font-weight:600;color:var(--text-primary);letter-spacing:-0.01em;line-height:1.3;}
+.header-subtitle{font-size:11px;color:var(--text-tertiary);margin-top:1px;}
+.deadline-chip{
+  font-size:11px;font-weight:600;
+  background:#FFF3F0;color:#D4500A;
+  border:1px solid #FFCDB8;
+  padding:4px 10px;border-radius:20px;
+  white-space:nowrap;flex-shrink:0;
+}
+.deadline-chip.expired{background:#FEF2F2;color:#DC2626;border-color:#FECACA;}
+
+/* ── STEPPER ── */
+.stepper-wrap{max-width:680px;margin:0 auto;padding:24px 24px 0;}
+.stepper{
+  display:flex;align-items:center;gap:0;
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:16px 20px;
+  box-shadow:var(--shadow);overflow:hidden;position:relative;
+}
+.step-item{
+  display:flex;align-items:center;gap:8px;
+  flex:1;cursor:default;
+}
+.step-item:not(:last-child)::after{
+  content:'';flex:1;height:1px;background:var(--border);
+  margin:0 8px;
+}
+.step-icon{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:600;flex-shrink:0;
+  transition:all var(--transition);
+  border:1.5px solid var(--border);
+  color:var(--text-tertiary);background:#fff;
+}
+.step-label{font-size:11px;color:var(--text-tertiary);font-weight:500;transition:color var(--transition);white-space:nowrap;}
+.step-item.active .step-icon{background:var(--brand);border-color:var(--brand);color:#fff;}
+.step-item.active .step-label{color:var(--brand);font-weight:600;}
+.step-item.done .step-icon{background:#ECFDF5;border-color:#10B981;color:#10B981;}
+.step-item.done .step-label{color:var(--text-secondary);}
+
+/* ── PROGRESS ── */
+.progress-wrap{max-width:680px;margin:0 auto;padding:12px 24px 0;}
+.progress-bar-bg{height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:var(--brand);border-radius:2px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1);}
+.progress-label{font-size:11px;color:var(--text-tertiary);margin-bottom:6px;display:flex;justify-content:space-between;}
+
+/* ── MAIN CONTAINER ── */
+.form-wrap{max-width:680px;margin:0 auto;padding:20px 24px 100px;}
+
+/* ── STEP PANEL ── */
+.step-panel{display:none;animation:slideIn 0.3s cubic-bezier(0.4,0,0.2,1);}
+.step-panel.active{display:block;}
+@keyframes slideIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+.step-panel.slide-left{animation:slideInLeft 0.3s cubic-bezier(0.4,0,0.2,1);}
+
+/* ── INFO BANNER ── */
+.info-banner{
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:20px;
+  box-shadow:var(--shadow);margin-bottom:20px;
+}
+.info-banner-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;cursor:pointer;user-select:none;}
+.info-banner-header h2{font-size:15px;font-weight:600;color:var(--text-primary);}
+.toggle-btn{
+  margin-left:auto;font-size:11px;color:var(--brand);font-weight:600;
+  background:var(--brand-light);border:none;cursor:pointer;
+  padding:4px 10px;border-radius:20px;transition:all var(--transition);
+}
+.info-content{font-size:13px;color:var(--text-secondary);line-height:1.8;}
+.info-content.collapsed{display:none;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin:8px 0;}
+.info-item{display:flex;gap:6px;align-items:flex-start;}
+.info-item strong{color:var(--text-primary);min-width:70px;flex-shrink:0;font-size:12px;}
+.info-item span{font-size:12px;}
+.bank-box{
+  background:var(--brand-subtle);border:1px solid #FFCDB8;
+  border-radius:var(--radius-sm);padding:12px;margin-top:8px;font-size:12px;
+}
+.bank-box strong{color:var(--brand-dark);}
+
+/* ── CARD ── */
+.form-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;
+  box-shadow:var(--shadow);margin-bottom:16px;
+}
+.card-header{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.card-header h3{font-size:16px;font-weight:600;color:var(--text-primary);}
+.card-header p{font-size:12px;color:var(--text-tertiary);margin-top:3px;}
+
+/* ── FIELD GROUP ── */
+.field{margin-bottom:20px;}
+.field:last-child{margin-bottom:0;}
+.field label{
+  display:block;font-size:13px;font-weight:500;
+  color:var(--text-secondary);margin-bottom:6px;
+}
+.field label.req::after{content:' *';color:var(--brand);}
+.field-hint{font-size:11px;color:var(--text-tertiary);margin-top:4px;}
+.field-hint.error-hint{color:var(--error);display:none;}
+.field-hint.error-hint.show{display:block;}
+
+/* ── INPUTS ── */
+input[type=text],input[type=tel],input[type=email],
+input[type=date],select,textarea{
+  width:100%;padding:10px 14px;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);
+  background:var(--bg-input);
+  font-family:var(--font-sans);font-size:14px;
+  color:var(--text-primary);
+  transition:border-color var(--transition),box-shadow var(--transition);
+  outline:none;
+  -webkit-appearance:none;appearance:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--brand);
+  box-shadow:0 0 0 3px rgba(212,80,10,0.10);
+}
+input.valid{border-color:#10B981;background:#FAFFFE;}
+input.invalid,select.invalid,textarea.invalid{
+  border-color:var(--error);
+  background:#FFF5F5;
+}
+input[readonly]{background:#F5F5F5;color:var(--text-tertiary);cursor:default;}
+input::placeholder{color:var(--text-tertiary);}
+textarea{resize:vertical;min-height:80px;line-height:1.6;}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239A9A9A' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
+
+/* ── RADIO GROUP ── */
+.radio-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+.radio-pill{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 16px;border:1.5px solid var(--border);
+  border-radius:40px;cursor:pointer;transition:all var(--transition);
+  font-size:13px;color:var(--text-secondary);font-weight:500;
+  user-select:none;
+}
+.radio-pill:has(input:checked){
+  background:var(--brand-light);border-color:var(--brand);color:var(--brand);
+}
+.radio-pill input{position:absolute;opacity:0;pointer-events:none;}
+.radio-pill .dot{
+  width:14px;height:14px;border-radius:50%;
+  border:1.5px solid currentColor;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.radio-pill:has(input:checked) .dot::after{
+  content:'';width:6px;height:6px;border-radius:50%;background:var(--brand);
+}
+
+/* ── AGE BADGE ── */
+.age-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:8px;
+  font-size:12px;font-weight:600;margin-top:8px;
+}
+.age-badge.ok{background:#ECFDF5;color:#15803D;border:1px solid #A7F3D0;}
+.age-badge.bad{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;}
+
+/* ── FILE UPLOAD ── */
+.upload-zone{
+  border:2px dashed var(--border);border-radius:var(--radius);
+  padding:24px;text-align:center;
+  transition:all var(--transition);cursor:pointer;
+  background:var(--bg);
+}
+.upload-zone:hover,.upload-zone.dragover{
+  border-color:var(--brand);background:var(--brand-light);
+}
+.upload-zone.has-file{
+  border-color:#10B981;border-style:solid;background:#FAFFFE;
+}
+.upload-icon{font-size:24px;margin-bottom:8px;}
+.upload-label{font-size:13px;font-weight:500;color:var(--text-secondary);}
+.upload-hint{font-size:11px;color:var(--text-tertiary);margin-top:4px;}
+.upload-name{font-size:12px;font-weight:500;color:#15803D;margin-top:6px;}
+.upload-input{display:none;}
+
+/* ── CONSENT TEXT ── */
+.consent-block{
+  background:var(--brand-subtle);border-left:3px solid var(--brand);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:16px;font-size:13px;color:var(--text-secondary);
+  line-height:2.2;margin-bottom:16px;
+}
+.consent-block input[type=text],.consent-block select{
+  display:inline;width:auto;padding:2px 8px;
+  border:none;border-bottom:1.5px solid var(--brand-dark);
+  background:transparent;font-size:13px;border-radius:0;
+  box-shadow:none;
+}
+.consent-block input:focus,.consent-block select:focus{
+  border-bottom-color:var(--brand);box-shadow:none;background:rgba(212,80,10,0.04);
+}
+.consent-block input[readonly]{
+  background:transparent;color:var(--text-tertiary);
+  border-bottom-color:#ddd;cursor:default;
+}
+
+/* ── SIGNATURE ── */
+.sig-wrap{
+  border:1.5px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;background:#fff;position:relative;
+}
+.sig-wrap.has-sig{border-color:#10B981;}
+canvas{
+  display:block;width:100%;cursor:crosshair;
+  touch-action:none;
+}
+.sig-actions{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 12px;border-top:1px solid var(--border);
+  background:#FAFAF8;
+}
+.clear-btn{
+  font-size:12px;color:#DC2626;font-weight:500;
+  background:none;border:1px solid #FECACA;
+  border-radius:6px;padding:4px 12px;cursor:pointer;
+  transition:all var(--transition);
+}
+.clear-btn:hover{background:#FEF2F2;}
+.sig-hint{font-size:11px;color:var(--text-tertiary);}
+
+/* ── CHECKBOX ── */
+.checkbox-row{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;color:var(--text-tertiary);cursor:pointer;
+  margin-bottom:8px;
+}
+.checkbox-row input{
+  width:14px;height:14px;border-radius:3px;
+  accent-color:var(--brand);cursor:pointer;flex-shrink:0;
+}
+
+/* ── SUMMARY REVIEW ── */
+.review-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;
+  margin-bottom:12px;
+}
+.review-section-label{
+  font-size:10px;font-weight:700;letter-spacing:0.08em;
+  color:var(--text-tertiary);text-transform:uppercase;
+  margin-bottom:10px;
+}
+.review-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:16px;padding:5px 0;border-bottom:1px solid #F5F5F5;font-size:13px;
+}
+.review-row:last-child{border-bottom:none;}
+.review-key{color:var(--text-tertiary);flex-shrink:0;}
+.review-val{font-weight:500;text-align:right;word-break:break-all;}
+.fee-row{
+  background:var(--brand-light);border-radius:var(--radius-sm);
+  padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin-top:12px;
+}
+.fee-label{font-size:13px;font-weight:600;color:var(--text-primary);}
+.fee-amount{font-size:22px;font-weight:700;color:var(--brand);}
+
+/* ── NAV BUTTONS ── */
+.nav-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:#fff;border-top:1px solid var(--border);
+  padding:12px 24px 16px;z-index:50;
+}
+.nav-inner{
+  max-width:680px;margin:0 auto;
+  display:flex;gap:10px;
+}
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:12px 24px;border-radius:var(--radius);
+  font-family:var(--font-sans);font-size:14px;font-weight:600;
+  cursor:pointer;transition:all var(--transition);border:none;
+  white-space:nowrap;
+}
+.btn-back{
+  background:#fff;color:var(--text-secondary);
+  border:1.5px solid var(--border);flex-shrink:0;
+}
+.btn-back:hover{background:#F5F5F5;border-color:#ccc;}
+.btn-next{
+  background:var(--brand);color:#fff;flex:1;
+  box-shadow:0 4px 12px rgba(212,80,10,0.25);
+}
+.btn-next:hover{background:var(--brand-mid);box-shadow:0 6px 20px rgba(212,80,10,0.35);}
+.btn-next:active{transform:scale(0.98);}
+.btn-next:disabled{background:#D1D5DB;box-shadow:none;cursor:not-allowed;opacity:0.6;}
+.btn-submit{
+  background:var(--brand);color:#fff;flex:1;
+  box-shadow:0 4px 12px rgba(212,80,10,0.25);
+}
+.btn-submit:hover{background:var(--brand-mid);}
+.btn-submit:disabled{background:#D1D5DB;box-shadow:none;cursor:not-allowed;}
+
+/* ── LOADING OVERLAY ── */
+.loading-overlay{
+  position:fixed;inset:0;background:rgba(255,255,255,0.92);
+  z-index:200;display:none;flex-direction:column;
+  align-items:center;justify-content:center;gap:16px;
+  backdrop-filter:blur(4px);
+}
+.loading-overlay.show{display:flex;}
+.spinner{
+  width:40px;height:40px;border:3px solid var(--border);
+  border-top-color:var(--brand);border-radius:50%;
+  animation:spin 0.7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:14px;font-weight:500;color:var(--text-secondary);}
+
+/* ── SUCCESS SCREEN ── */
+.success-screen{
+  display:none;text-align:center;padding:40px 24px;
+  max-width:480px;margin:0 auto;
+}
+.success-screen.show{display:block;}
+.success-icon{
+  width:72px;height:72px;border-radius:50%;
+  background:#ECFDF5;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+}
+.success-icon svg{width:36px;height:36px;stroke:#10B981;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.success-id{
+  font-size:22px;font-weight:700;color:var(--brand);
+  letter-spacing:2px;margin:8px 0;
+}
+.success-fee{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--brand-light);color:var(--brand-dark);
+  font-size:15px;font-weight:700;padding:8px 20px;border-radius:40px;margin:12px 0;
+}
+.success-actions{display:flex;gap:10px;margin-top:20px;}
+.btn-outline{
+  flex:1;padding:12px;border:1.5px solid var(--brand);
+  border-radius:var(--radius);background:#fff;color:var(--brand);
+  font-size:13px;font-weight:600;cursor:pointer;transition:all var(--transition);
+}
+.btn-outline:hover{background:var(--brand-light);}
+.btn-green{
+  flex:1;padding:12px;border:none;
+  border-radius:var(--radius);background:#15803D;color:#fff;
+  font-size:13px;font-weight:600;cursor:pointer;transition:all var(--transition);
+}
+.btn-green:hover{background:#16a34a;}
+
+/* ── EXPIRY BLOCKER ── */
+.expired-overlay{
+  position:fixed;inset:0;background:rgba(255,255,255,0.97);
+  z-index:300;display:none;flex-direction:column;
+  align-items:center;justify-content:center;gap:16px;
+  padding:24px;text-align:center;
+}
+.expired-overlay.show{display:flex;}
+.expired-icon{font-size:48px;margin-bottom:8px;}
+.expired-title{font-size:22px;font-weight:700;color:#DC2626;}
+.expired-desc{font-size:14px;color:var(--text-secondary);max-width:400px;line-height:1.8;}
+
+/* ── PRINT ── */
+#printReceipt{display:none;}
+@media print{
+  body>*{display:none!important}
+  #printReceipt{display:block!important;padding:30px;font-family:Arial,sans-serif;font-size:13px;color:#000;max-width:700px;margin:auto;}
+  .pr-header{text-align:center;margin-bottom:20px;}
+  .pr-header h1{font-size:18px;font-weight:700;}
+  .pr-header h2{font-size:13px;font-weight:400;margin-top:4px;}
+  .pr-row{display:flex;gap:8px;padding:4px 0;border-bottom:1px solid #eee;}
+  .pr-k{font-weight:600;min-width:120px;color:#666;}
+  .pr-footer{text-align:center;font-size:11px;margin-top:20px;color:#888;}
+  @page{margin:10mm;size:A4}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:520px){
+  .info-grid{grid-template-columns:1fr;}
+  .radio-group{gap:8px;}
+  .stepper .step-label{display:none;}
+  .stepper .step-item:not(:last-child)::after{margin:0 4px;}
+  .form-card{padding:16px;}
+  .nav-bar{padding:10px 16px 14px;}
+}
+</style>
+</head>
+<body>
+
+
+    <!-- FULL BLOCKER -->
+<div class="expired-overlay" id="fullOverlay">
+  <div class="expired-icon">🙏</div>
+  <div class="expired-title">报名名额已满</div>
+  <div class="expired-desc">
+    本届「小菩萨快乐学佛营」名额已额满。<br><br>
+    如有疑问，请联络 <strong style="color:#D4500A">+6012-883 2618（秀萍）</strong>
+  </div>
+</div>
+
+
+
+<!-- EXPIRY BLOCKER -->
+<div class="expired-overlay" id="expiredOverlay">
+  <div class="expired-icon">🙏</div>
+  <div class="expired-title">报名通道已截止</div>
+  <div class="expired-desc">
+    本届「小菩萨快乐学佛营」的报名截止日期为<strong>2026年8月23日</strong>，目前已过截止期。<br><br>
+    如有疑问，请联络 <strong style="color:#D4500A">+6012-883 2618（秀萍）</strong>
+  </div>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <div class="loading-text" id="loadingText">正在提交，请稍候…</div>
+</div>
+
+<!-- PRINT RECEIPT -->
+<div id="printReceipt"></div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-dot">
+        <svg viewBox="0 0 24 24"><path d="M12 2L9.5 8H4l4.5 3.3-1.7 5.2L12 13l5.2 3.5-1.7-5.2L20 8h-5.5z"/></svg>
+      </div>
+      <div>
+        <div class="header-title">小菩萨快乐学佛营 2026</div>
+        <div class="header-subtitle">灵鹫山马来西亚佛学会 · 吉隆坡第六届</div>
+      </div>
+    </div>
+    <div class="deadline-chip" id="deadlineChip">截止：8月23日</div>
+    <div class="deadline-chip" id="seatsChip">查询名额中…</div>
+  </div>
+</header>
+
+<!-- STEPPER -->
+<div class="stepper-wrap">
+  <div class="stepper" id="stepperEl">
+    <div class="step-item active" data-step="0">
+      <div class="step-icon">1</div>
+      <div class="step-label">活动资讯</div>
+    </div>
+    <div class="step-item" data-step="1">
+      <div class="step-icon">2</div>
+      <div class="step-label">营员资料</div>
+    </div>
+    <div class="step-item" data-step="2">
+      <div class="step-icon">3</div>
+      <div class="step-label">家长资料</div>
+    </div>
+    <div class="step-item" data-step="3">
+      <div class="step-icon">4</div>
+      <div class="step-label">营队 & 付款</div>
+    </div>
+    <div class="step-item" data-step="4">
+      <div class="step-icon">5</div>
+      <div class="step-label">同意 & 确认</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span id="progressStepLabel">步骤 1 / 5</span>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+</div>
+
+<!-- FORM AREA -->
+<div class="form-wrap">
+
+  <!-- SUCCESS SCREEN -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--text-tertiary);text-transform:uppercase;margin-bottom:4px;">报名成功</div>
+    <h2 style="font-size:24px;font-weight:700;color:var(--text-primary);">感谢您的报名！</h2>
+    <div class="success-id" id="successId">-</div>
+    <p style="font-size:13px;color:var(--text-secondary);line-height:1.7;">感谢您为孩子报名参加本届学佛营。我们将透过群组通知营前事项，请留意。</p>
+    <div class="success-fee">营费 RM 60.00</div>
+    <div style="background:#F5F5F5;border-radius:var(--radius);padding:14px;margin-top:16px;" id="successSummary"></div>
+    <p style="font-size:11px;color:var(--text-tertiary);margin-top:12px;">确认邮件已发送至您的电邮 · <span id="successTime"></span></p>
+    <div class="success-actions">
+      <button class="btn-outline" onclick="doPrint()">🖨 下载收据</button>
+      <button class="btn-green" onclick="resetForm()">完成关闭 →</button>
+    </div>
+  </div>
+
+  <!-- STEP 0: INFO -->
+  <div class="step-panel active" id="panel-0">
+    <div class="info-banner">
+      <div class="info-banner-header" onclick="toggleInfo()">
+        <div style="font-size:20px">🙏</div>
+        <h2>学佛营简介 & 注意事项</h2>
+        <button class="toggle-btn" id="toggleBtn">收起 ▲</button>
+      </div>
+      <div class="info-content" id="infoContent">
+        <p style="margin-bottom:10px;font-size:13px;line-height:1.8;"><strong style="color:var(--text-primary)">宗旨：</strong>培育儿童感恩惜福、孝亲尊师、生活礼仪、良好品德，透过禅修学习专注，让身心安定。</p>
+        <div class="info-grid">
+          <div class="info-item"><strong>报名年龄</strong><span>8 — 12 岁</span></div>
+          <div class="info-item"><strong>日期</strong><span>2026年 8月 29—30 日（六、日）</span></div>
+          <div class="info-item"><strong>报到时间</strong><span>上午 8:30（准时）</span></div>
+          <div class="info-item"><strong>活动时间</strong><span>上午 9:00 — 下午 5:00</span></div>
+          <div class="info-item"><strong>地点</strong><span>SJK(C) Subang 梳邦华小</span></div>
+          <div class="info-item"><strong>主办</strong><span>灵鹫山马来西亚佛学会</span></div>
+          <div class="info-item"><strong>营费</strong><span>RM 60 / 位（含午餐 & 茶点）</span></div>
+          <div class="info-item"><strong>截止报名</strong><span style="color:var(--brand);font-weight:600">2026年 8月 23日</span></div>
+          <div class="info-item" style="grid-column:1/-1"><strong>地址</strong><span>Jln. Pekan Subang, Kampung Subang Baru, 40150 Shah Alam, Selangor</span></div>
+        </div>
+        <div class="bank-box">
+          <strong>付款方式（HONG LEONG BANK）</strong><br>
+          户口号码：<strong style="color:var(--brand-dark)">19400036297</strong><br>
+          户名：Persatuan Penganut Agama Buddha Ling Jiou San Malaysia
+        </div>
+        <div style="margin-top:12px;font-size:12px;">
+          <strong style="color:var(--text-primary)">注意事项：</strong>
+          <ol style="padding-left:18px;margin-top:6px;display:grid;gap:4px;color:var(--text-secondary)">
+            <li>请勿携带贵重物品，如有遗失主办当局恕不负责。</li>
+            <li>如有必要请携带私人药物。</li>
+            <li>如有食物过敏或健康状况，请立即通知联络人。</li>
+            <li>如有必要营员将会面试后方可入取参与。</li>
+            <li>请不要无故缺席，以免浪费名额。</li>
+            <li>退出或缺席者，营费将不被退还。</li>
+            <li>营期间严禁使用手提电话。</li>
+            <li>本简章主办当局有权增删。</li>
+            <li>营前将透过群组通知信息。</li>
+          </ol>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--text-secondary)">
+          <strong>必备物品：</strong>自备水瓶（必须）、铅笔盒和笔记本。营队无提供早餐，请让孩子用餐后才入营。<br>
+          <strong>联络：</strong><span style="color:var(--brand)">+6012-883 2618（秀萍）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card" style="text-align:center;padding:32px;">
+      <div style="font-size:36px;margin-bottom:12px;">📋</div>
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">开始填写报名表</h3>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.7;max-width:380px;margin:0 auto 20px;">
+        请准备好营员与家长资料，以及 RM 60 的付款截图，过程约需 <strong>5 分钟</strong>完成。
+      </p>
+      <div style="display:flex;flex-direction:column;gap:8px;max-width:300px;margin:0 auto;text-align:left;font-size:13px;color:var(--text-secondary);">
+        <div style="display:flex;align-items:center;gap:8px;"><span style="color:#10B981;font-size:16px">✓</span> 营员基本资料（姓名、出生日期）</div>
+        <div style="display:flex;align-items:center;gap:8px;"><span style="color:#10B981;font-size:16px">✓</span> 家长联络资料与紧急联络人</div>
+        <div style="display:flex;align-items:center;gap:8px;"><span style="color:#10B981;font-size:16px">✓</span> T-shirt 尺寸选择</div>
+        <div style="display:flex;align-items:center;gap:8px;"><span style="color:#10B981;font-size:16px">✓</span> RM 60 付款凭证截图（≤ 5MB）</div>
+        <div style="display:flex;align-items:center;gap:8px;"><span style="color:#10B981;font-size:16px">✓</span> 家长手写电子签名</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 1: CAMPER INFO -->
+  <div class="step-panel" id="panel-1">
+    <div class="form-card">
+      <div class="card-header">
+        <h3>营员基本资料</h3>
+        <p>请填写参营儿童的真实资料</p>
+      </div>
+
+      <div class="field">
+        <label class="req" for="chinese_name">中文姓名</label>
+        <input type="text" id="chinese_name" placeholder="请输入中文全名" autocomplete="off">
+        <div class="field-hint">请输入纯汉字，不含英文或符号</div>
+        <div class="field-hint error-hint" id="err-chinese_name"></div>
+      </div>
+
+      <div class="field">
+        <label class="req" for="english_name">英文姓名</label>
+        <input type="text" id="english_name" placeholder="As per IC / Passport">
+        <div class="field-hint error-hint" id="err-english_name"></div>
+      </div>
+
+      <div class="field">
+        <label class="req">性别</label>
+        <div class="radio-group">
+          <label class="radio-pill"><input type="radio" name="gender" value="男"><div class="dot"></div>男</label>
+          <label class="radio-pill"><input type="radio" name="gender" value="女"><div class="dot"></div>女</label>
+        </div>
+        <div class="field-hint error-hint" id="err-gender"></div>
+      </div>
+
+      <div class="field">
+        <label class="req" for="dob">出生日期</label>
+        <input type="date" id="dob" min="2013-01-01" max="2019-01-01">
+        <div id="ageBadgeWrap" style="display:none;margin-top:8px;"></div>
+        <div class="field-hint error-hint" id="err-dob"></div>
+        <input type="hidden" id="age_hidden">
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label class="req" for="school">就读学校</label>
+        <input type="text" id="school" placeholder="例如：SJK(C) Chong Hwa">
+        <div class="field-hint error-hint" id="err-school"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: PARENT INFO -->
+  <div class="step-panel" id="panel-2">
+
+    <div class="form-card">
+      <div class="card-header">
+        <h3>家长 / 监护人（主要联络人）</h3>
+        <p>请填写负责联络的家长或监护人资料</p>
+      </div>
+
+      <div class="field">
+        <label class="req" for="parent_name">姓名</label>
+        <input type="text" id="parent_name" placeholder="请输入家长/监护人姓名">
+        <div class="field-hint error-hint" id="err-parent_name"></div>
+      </div>
+
+      <div class="field">
+        <label class="req">与学童关系</label>
+        <div class="radio-group">
+          <label class="radio-pill"><input type="radio" name="relationship" value="爸爸"><div class="dot"></div>爸爸</label>
+          <label class="radio-pill"><input type="radio" name="relationship" value="妈妈"><div class="dot"></div>妈妈</label>
+          <label class="radio-pill"><input type="radio" name="relationship" value="监护人"><div class="dot"></div>监护人</label>
+        </div>
+        <div class="field-hint error-hint" id="err-relationship"></div>
+      </div>
+
+      <div class="field">
+        <label class="req" for="parent_phone">联络电话（手机）</label>
+        <input type="tel" id="parent_phone" placeholder="例如：0123456789">
+        <div class="field-hint">无需填写空格或「-」</div>
+        <div class="field-hint error-hint" id="err-parent_phone"></div>
+      </div>
+
+      <div class="field">
+        <label class="req" for="email">电子邮件</label>
+        <input type="email" id="email" placeholder="example@email.com">
+        <div class="field-hint error-hint" id="err-email"></div>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label class="req" for="address">住家地址</label>
+        <textarea id="address" placeholder="请填写完整地址（含邮编及州属）"></textarea>
+        <div class="field-hint error-hint" id="err-address"></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="card-header">
+        <h3>紧急联络人</h3>
+        <p>如发生紧急情况时联络的人</p>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label style="font-size:13px;font-weight:500;color:var(--text-secondary);margin-bottom:10px;display:block;">紧急联络人是否与上方家长 / 监护人相同？</label>
+        <div class="radio-group">
+          <label class="radio-pill" id="pill-same">
+            <input type="radio" name="emergency_same" value="yes" onchange="toggleEmergency()">
+            <div class="dot"></div>
+            是，相同
+          </label>
+          <label class="radio-pill" id="pill-diff">
+            <input type="radio" name="emergency_same" value="no" onchange="toggleEmergency()">
+            <div class="dot"></div>
+            否，另填
+          </label>
+        </div>
+        <div class="field-hint error-hint" id="err-emergency_same"></div>
+      </div>
+
+      <div id="emergencyExtraFields" style="display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+        <div class="field">
+          <label class="req" for="emergency_name">紧急联络人姓名</label>
+          <input type="text" id="emergency_name" placeholder="请输入姓名">
+          <div class="field-hint error-hint" id="err-emergency_name"></div>
+        </div>
+
+        <div class="field">
+          <label class="req" for="emergency_phone">紧急联络人电话</label>
+          <input type="tel" id="emergency_phone" placeholder="例如：0123456789">
+          <div class="field-hint error-hint" id="err-emergency_phone"></div>
+        </div>
+
+        <div class="field" style="margin-bottom:0">
+          <label class="req">与学童关系</label>
+          <div class="radio-group">
+            <label class="radio-pill"><input type="radio" name="emergency_relationship" value="爷爷/奶奶"><div class="dot"></div>爷爷/奶奶</label>
+            <label class="radio-pill"><input type="radio" name="emergency_relationship" value="外公/外婆"><div class="dot"></div>外公/外婆</label>
+            <label class="radio-pill"><input type="radio" name="emergency_relationship" value="亲戚"><div class="dot"></div>亲戚</label>
+            <label class="radio-pill"><input type="radio" name="emergency_relationship" value="其他"><div class="dot"></div>其他</label>
+          </div>
+          <div class="field-hint error-hint" id="err-emergency_relationship"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STEP 3: CAMP + PAYMENT -->
+  <div class="step-panel" id="panel-3">
+    <div class="form-card">
+      <div class="card-header">
+        <h3>营队 & 付款资料</h3>
+        <p>请先转账 RM60，再上传付款截图</p>
+      </div>
+
+      <div class="field">
+        <label class="req" for="tshirt_size">禅修服（T-shirt）尺寸</label>
+        <select id="tshirt_size">
+          <option value="">— 请选择尺寸 —</option>
+          <option value="28">28号（肩宽 11½ 寸）</option>
+          <option value="30">30号（肩宽 12½ 寸）</option>
+          <option value="32">32号（肩宽 13 寸）</option>
+          <option value="S">S（肩宽 16 寸）</option>
+          <option value="M">M（肩宽 18½ 寸）</option>
+        </select>
+        <div class="field-hint error-hint" id="err-tshirt_size"></div>
+      </div>
+
+      <div class="field">
+        <label class="req" for="attendance_history">曾参加过我们的学佛营？</label>
+        <select id="attendance_history">
+          <option value="">— 请选择 —</option>
+          <option value="yes">有，曾参加</option>
+          <option value="no">无，这是第一次</option>
+        </select>
+        <div class="field-hint error-hint" id="err-attendance_history"></div>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label class="req">付款凭证</label>
+        <div class="bank-box" style="margin-bottom:12px;">
+          请先转账 <strong>RM 60</strong> 至：<br>
+          <strong>HONG LEONG BANK 19400036297</strong><br>
+          Persatuan Penganut Agama Buddha Ling Jiou San Malaysia
+        </div>
+        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('receipt').click()">
+          <input type="file" id="receipt" class="upload-input" accept="image/*,application/pdf">
+          <div class="upload-icon">📎</div>
+          <div class="upload-label">点击选择付款截图</div>
+          <div class="upload-hint">JPG / PNG / PDF，最大 5MB</div>
+          <div class="upload-name" id="uploadName" style="display:none;"></div>
+        </div>
+        <div class="field-hint error-hint" id="err-receipt"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: CONSENT + REVIEW -->
+  <div class="step-panel" id="panel-4">
+    <div class="form-card">
+      <div class="card-header">
+        <h3>家长同意书 & 签名</h3>
+        <p>请填写真实资料并完成手写签名</p>
+      </div>
+
+      <div class="consent-block">
+        本人（中文姓名）
+        <input type="text" id="consent_parent_name" style="width:110px;" placeholder="请填写" autocomplete="off">
+        ，身份证号码
+        <input type="text" id="consent_ic" style="width:140px;" placeholder="请填写">
+        ，身份为
+        <select id="consent_role" style="padding:2px 6px;border:none;border-bottom:1.5px solid var(--brand-dark);background:transparent;font-size:13px;">
+          <option value="家长">家长</option>
+          <option value="监护人">监护人</option>
+        </select>
+        ，兹同意子女（中文姓名）
+        <input type="text" id="consent_child_name" style="width:110px;" readonly placeholder="自动填入">
+        参加「小菩萨快乐学佛营」。<br><br>
+        本人已了解并同意本活动之相关安排及注意事项，并确认所提供之资料真实无误。活动期间，主办单位将尽合理努力确保参与者之安全；惟如发生不可预见之意外情况，本人同意不追究主办单位及相关人员之法律责任。
+      </div>
+      <div class="field-hint error-hint" id="err-consent_parent_name" style="margin-top:-12px;margin-bottom:8px;"></div>
+      <div class="field-hint error-hint" id="err-consent_ic" style="margin-bottom:12px;"></div>
+
+      <div style="height:1px;background:var(--border);margin:20px 0;"></div>
+
+      <label class="block" style="font-size:13px;font-weight:500;color:var(--text-secondary);margin-bottom:10px;">家长 / 监护人签名 <span style="color:var(--brand)">*</span></label>
+
+      <div style="display:flex;gap:0;border:1.5px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:12px;width:fit-content;">
+        <button type="button" id="tabHandwrite" onclick="switchSigMode('handwrite')"
+          style="padding:7px 18px;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all 0.2s;background:var(--brand);color:#fff;">
+          ✍️ 手写签名
+        </button>
+        <button type="button" id="tabType" onclick="switchSigMode('type')"
+          style="padding:7px 18px;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all 0.2s;background:#fff;color:var(--text-secondary);border-left:1.5px solid var(--border);">
+          ⌨️ 电子签名
+        </button>
+      </div>
+
+      <div id="sigPanelHandwrite">
+        <div class="sig-wrap" id="sigWrap">
+          <canvas id="sigCanvas" height="160"></canvas>
+          <div class="sig-actions">
+            <button type="button" class="clear-btn" onclick="clearSig()">↺ 清除重签</button>
+            <span class="sig-hint">鼠标拖曳 / 触屏均可签名</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="sigPanelType" style="display:none;">
+        <div style="margin-bottom:8px;">
+          <input type="text" id="typedSigInput" placeholder="请输入您的姓名（将以手写体显示）"
+            oninput="renderTypedSig()"
+            style="font-size:14px;">
+        </div>
+        <div class="sig-wrap" id="sigWrapType" style="min-height:100px;display:flex;align-items:center;justify-content:center;background:#FAFAF8;">
+          <canvas id="sigCanvasType" height="100"></canvas>
+        </div>
+        <p style="font-size:11px;color:var(--text-tertiary);margin-top:6px;">电子签名与手写签名具有同等法律效力。本人确认已阅读并同意上述条款。</p>
+      </div>
+
+      <div class="field-hint error-hint" id="err-signature"></div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:10px;">报名摘要确认</div>
+      <div id="reviewContent"></div>
+    </div>
+  </div>
+
+</div><!-- end form-wrap -->
+
+<!-- NAV BAR -->
+<div class="nav-bar" id="navBar">
+  <div class="nav-inner">
+    <button class="btn btn-back" id="btnBack" onclick="prevStep()" style="display:none">← 返回</button>
+    <button class="btn btn-next" id="btnNext" onclick="nextStep()">开始填写 →</button>
+  </div>
+</div>
+
+<script>
+const API_ENDPOINT='https://script.google.com/macros/s/AKfycbzXILwe1p1awpJl8a_naq3aWdTqncQxwh_ed61FLGaojcauuuq5ba8WeFveWKK_PnEp/exec';
+
+// ── EXPIRY CHECK ──
+const DEADLINE=new Date('2026-08-23T23:59:59+08:00');
+function checkExpiry(){
+  const now=new Date();
+  if(now>DEADLINE){
+    document.getElementById('expiredOverlay').classList.add('show');
+    document.getElementById('deadlineChip').classList.add('expired');
+    document.getElementById('deadlineChip').textContent='报名已截止';
+  }
+}
+checkExpiry();
+checkCapacity();  // ← add this line
+
+
+async function checkCapacity() {
+  try {
+    const resp = await fetch(API_ENDPOINT);
+    const data = await resp.json();
+
+    const chip = document.getElementById('seatsChip');
+    const remaining = data.max - data.registered;
+
+    if (data.full) {
+      document.getElementById('fullOverlay').classList.add('show');
+      chip.textContent = '名额已满';
+      chip.style.background = '#FEF2F2';
+      chip.style.color = '#DC2626';
+      chip.style.borderColor = '#FECACA';
+    } else {
+      chip.textContent = `剩余名额：${remaining} / ${data.max}`;
+    }
+  } catch (err) {
+    // Silently fail — don't block the form if the check fails
+    document.getElementById('seatsChip').textContent = '名额查询失败';
+    console.warn('Capacity check failed:', err);
+  }
+}
+
+
+// ── STATE ──
+let currentStep=0;
+const TOTAL_STEPS=5;
+let receiptDataUrl=null,receiptFileName=null,receiptFileType=null;
+let currentReceiptData=null;
+
+// ── MALAYSIAN IC VALIDATION ──
+// Format: YYMMDD-PB-####
+// YYMMDD = birthdate, PB = 2-digit state/country code, #### = 4-digit sequence
+const MY_IC_REGEX = /^\d{6}-\d{2}-\d{4}$/;
+
+function validateMyIC(value) {
+  if (!MY_IC_REGEX.test(value)) return false;
+  // Validate the date portion (YYMMDD)
+  const [datePart] = value.split('-');
+  const mm = parseInt(datePart.substring(2, 4), 10);
+  const dd = parseInt(datePart.substring(4, 6), 10);
+  return mm >= 1 && mm <= 12 && dd >= 1 && dd <= 31;
+}
+
+// ── CHINESE NAME VALIDATION ──
+// Regex: CJK Unified Ideographs (common) + Extension A
+const CHINESE_REGEX = /^[\u4E00-\u9FFF\u3400-\u4DBF]+$/u;
+// IME composition state per field id
+const composingState = {};
+
+/**
+ * Strip non-Chinese characters from value.
+ * Returns cleaned string.
+ */
+function stripNonChinese(val) {
+  return val.replace(/[^\u4E00-\u9FFF\u3400-\u4DBF]/gu, '');
+}
+
+/**
+ * Validate a Chinese-name field.
+ * Shows/hides the error hint and applies visual classes.
+ * Returns true if valid.
+ */
+function validateChineseName(inputEl, errEl) {
+  const val = inputEl.value.trim();
+  let msg = '';
+  if (!val) {
+    msg = '请输入中文姓名（必填）。';
+  } else if (!CHINESE_REGEX.test(val)) {
+    msg = '请输入纯中文姓名，不含英文、数字或符号。';
+  }
+  if (msg) {
+    inputEl.classList.add('invalid');
+    inputEl.classList.remove('valid');
+    errEl.textContent = msg;
+    errEl.classList.add('show');
+    return false;
+  } else {
+    inputEl.classList.remove('invalid');
+    inputEl.classList.add('valid');
+    errEl.textContent = '';
+    errEl.classList.remove('show');
+    return true;
+  }
+}
+
+/**
+ * Attach Chinese-name validation listeners to an input element.
+ * Handles IME composition (pinyin / zhuyin / cangjie) correctly.
+ */
+function attachChineseNameListeners(inputEl, errEl) {
+  composingState[inputEl.id] = false;
+
+  inputEl.addEventListener('compositionstart', () => {
+    composingState[inputEl.id] = true;
+  });
+
+  inputEl.addEventListener('compositionend', () => {
+    composingState[inputEl.id] = false;
+    // After IME commits, strip any stray non-Chinese chars then validate
+    const cleaned = stripNonChinese(inputEl.value);
+    if (inputEl.value !== cleaned) inputEl.value = cleaned;
+    validateChineseName(inputEl, errEl);
+  });
+
+  inputEl.addEventListener('input', () => {
+    if (composingState[inputEl.id]) return; // wait for compositionend
+    const cleaned = stripNonChinese(inputEl.value);
+    if (inputEl.value !== cleaned) inputEl.value = cleaned;
+    validateChineseName(inputEl, errEl);
+  });
+
+  inputEl.addEventListener('blur', () => {
+    // Always validate on blur, even mid-composition
+    composingState[inputEl.id] = false;
+    const cleaned = stripNonChinese(inputEl.value);
+    if (inputEl.value !== cleaned) inputEl.value = cleaned;
+    validateChineseName(inputEl, errEl);
+  });
+}
+
+
+
+// Auto-format Malaysian IC: insert dashes at positions 6 and 9
+const icInput = document.getElementById('consent_ic');
+const icErrEl = document.getElementById('err-consent_ic');
+
+icInput.addEventListener('input', function () {
+  // Strip everything except digits
+  let digits = this.value.replace(/\D/g, '').substring(0, 12);
+  // Re-insert dashes
+  if (digits.length > 6) digits = digits.substring(0, 6) + '-' + digits.substring(6);
+  if (digits.length > 9) digits = digits.substring(0, 9) + '-' + digits.substring(9);
+  this.value = digits;
+
+  // Live validation feedback once fully typed
+  if (digits.length === 14) {  // 12 digits + 2 dashes
+    if (!validateMyIC(digits)) {
+      icErrEl.textContent = '请输入有效的大马身份证号码格式（例如：900101-14-5678）。';
+      icErrEl.classList.add('show');
+      icInput.style.borderBottomColor = 'var(--error)';
+    } else {
+      icErrEl.textContent = '';
+      icErrEl.classList.remove('show');
+      icInput.style.borderBottomColor = 'var(--success)';
+    }
+  } else {
+    icErrEl.classList.remove('show');
+    icInput.style.borderBottomColor = '';
+  }
+});
+
+icInput.addEventListener('blur', function () {
+  const val = this.value.trim();
+  if (!val) {
+    icErrEl.textContent = '请填写身份证号码（必填）。';
+    icErrEl.classList.add('show');
+    icInput.style.borderBottomColor = 'var(--error)';
+  } else if (!validateMyIC(val)) {
+    icErrEl.textContent = '请输入有效的大马身份证号码格式（例如：900101-14-5678）。';
+    icErrEl.classList.add('show');
+    icInput.style.borderBottomColor = 'var(--error)';
+  } else {
+    icErrEl.textContent = '';
+    icErrEl.classList.remove('show');
+    icInput.style.borderBottomColor = 'var(--success)';
+  }
+});
+
+
+// ── STEPPER UPDATE ──
+function updateStepper(){
+  document.querySelectorAll('.step-item').forEach((el,i)=>{
+    el.className='step-item';
+    if(i<currentStep)el.classList.add('done');
+    else if(i===currentStep)el.classList.add('active');
+    const icon=el.querySelector('.step-icon');
+    if(i<currentStep)icon.innerHTML='✓';
+    else icon.textContent=i+1;
+  });
+  const pct=Math.round((currentStep/(TOTAL_STEPS-1))*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressPct').textContent=pct+'%';
+  document.getElementById('progressStepLabel').textContent='步骤 '+(currentStep+1)+' / '+TOTAL_STEPS;
+
+  const btnBack=document.getElementById('btnBack');
+  const btnNext=document.getElementById('btnNext');
+  btnBack.style.display=currentStep>0?'flex':'none';
+  if(currentStep===TOTAL_STEPS-1){
+    btnNext.textContent='✓ 提交报名';
+    btnNext.className='btn btn-submit';
+    btnNext.onclick=submitForm;
+  } else if(currentStep===0){
+    btnNext.textContent='开始填写 →';
+    btnNext.className='btn btn-next';
+    btnNext.onclick=nextStep;
+  } else {
+    btnNext.textContent='下一步 →';
+    btnNext.className='btn btn-next';
+    btnNext.onclick=nextStep;
+  }
+}
+
+// ── PANEL SWITCH ──
+function showPanel(idx, dir = 'right') {
+  document.querySelectorAll('.step-panel').forEach(p => {
+    p.classList.remove('active', 'slide-left');
+  });
+  const panel = document.getElementById('panel-' + idx);
+  if (panel) {
+    if (dir === 'left') panel.classList.add('slide-left');
+    panel.classList.add('active');
+  }
+  // Re-init signature canvas once the panel is visible and has real dimensions
+  if (idx === 4) {
+    requestAnimationFrame(() => initSig());
+  }
+}
+
+// ── INFO TOGGLE ──
+function toggleInfo(){
+  const content=document.getElementById('infoContent');
+  const btn=document.getElementById('toggleBtn');
+  content.classList.toggle('collapsed');
+  btn.textContent=content.classList.contains('collapsed')?'展开 ▼':'收起 ▲';
+}
+
+// ── EMERGENCY TOGGLE ──
+function toggleEmergency(){
+  const val=document.querySelector('input[name="emergency_same"]:checked')?.value;
+  document.getElementById('emergencyExtraFields').style.display=val==='no'?'block':'none';
+}
+
+// ── DOB / AGE ──
+document.getElementById('dob').addEventListener('change',function(){
+  const dob=new Date(this.value);
+  const campDate=new Date('2026-08-29');
+  let age=campDate.getFullYear()-dob.getFullYear();
+  const m=campDate.getMonth()-dob.getMonth();
+  if(m<0||(m===0&&campDate.getDate()<dob.getDate()))age--;
+  const wrap=document.getElementById('ageBadgeWrap');
+  wrap.style.display='block';
+  const ok=age>=8&&age<=12;
+  wrap.innerHTML=`<div class="age-badge ${ok?'ok':'bad'}">${ok?'✓':'✗'} 营时年龄：${age} 岁 ${ok?'（符合资格）':'（不符合 8–12 岁要求）'}</div>`;
+  document.getElementById('age_hidden').value=age;
+  const errEl=document.getElementById('err-dob');
+  if(!ok){
+    errEl.textContent='年龄不符合报名资格（8–12 岁）。';
+    errEl.classList.add('show');
+  } else {
+    errEl.textContent='';
+    errEl.classList.remove('show');
+  }
+});
+
+// ── RECEIPT UPLOAD ──
+document.getElementById('receipt').addEventListener('change',function(){
+  const file=this.files[0];
+  const errEl=document.getElementById('err-receipt');
+  if(!file)return;
+  if(file.size>5*1024*1024){
+    errEl.textContent='文件大小不能超过 5MB。';
+    errEl.classList.add('show');
+    this.value='';
+    return;
+  }
+  const allowed=['image/jpeg','image/png','image/gif','image/webp','application/pdf'];
+  if(!allowed.includes(file.type)){
+    errEl.textContent='仅支持 JPG、PNG、GIF、WEBP、PDF 文件。';
+    errEl.classList.add('show');
+    this.value='';
+    return;
+  }
+  errEl.classList.remove('show');
+  receiptFileName=file.name;
+  receiptFileType=file.type;
+  const zone=document.getElementById('uploadZone');
+  zone.classList.add('has-file');
+  const nameEl=document.getElementById('uploadName');
+  nameEl.textContent='✓ '+file.name;
+  nameEl.style.display='block';
+  const reader=new FileReader();
+  reader.onload=e=>{
+    receiptDataUrl=e.target.result;
+    currentReceiptData=e.target.result.split(',')[1];
+  };
+  reader.readAsDataURL(file);
+});
+
+// Drag-drop
+const uploadZone=document.getElementById('uploadZone');
+uploadZone.addEventListener('dragover',e=>{e.preventDefault();uploadZone.classList.add('dragover');});
+uploadZone.addEventListener('dragleave',()=>uploadZone.classList.remove('dragover'));
+uploadZone.addEventListener('drop',e=>{
+  e.preventDefault();uploadZone.classList.remove('dragover');
+  const file=e.dataTransfer.files[0];
+  if(file){
+    const dt=new DataTransfer();dt.items.add(file);
+    document.getElementById('receipt').files=dt.files;
+    document.getElementById('receipt').dispatchEvent(new Event('change'));
+  }
+});
+
+// ── SIGNATURE ──
+let sigMode='handwrite';
+let hasSig=false;
+let hasTypedSig=false;
+
+
+function switchSigMode(mode) {
+  sigMode = mode;
+  document.getElementById('sigPanelHandwrite').style.display = mode === 'handwrite' ? 'block' : 'none';
+  document.getElementById('sigPanelType').style.display      = mode === 'type'       ? 'block' : 'none';
+  const th = document.getElementById('tabHandwrite');
+  const tt = document.getElementById('tabType');
+  if (mode === 'handwrite') {
+    th.style.background = 'var(--brand)'; th.style.color = '#fff';
+    tt.style.background = '#fff';         tt.style.color = 'var(--text-secondary)';
+    requestAnimationFrame(() => initSig());
+  } else {
+    tt.style.background = 'var(--brand)'; tt.style.color = '#fff';
+    th.style.background = '#fff';         th.style.color = 'var(--text-secondary)';
+    requestAnimationFrame(() => renderTypedSig());
+  }
+}
+
+// Canvas setup
+function setupCanvas(canvas){
+  const rect=canvas.getBoundingClientRect();
+  const dpr=window.devicePixelRatio||1;
+  canvas.width=rect.width*dpr;
+  canvas.height=parseInt(canvas.getAttribute('height'))*dpr;
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  ctx.strokeStyle='#0F0F0F';
+  ctx.lineWidth=2;
+  ctx.lineCap='round';
+  ctx.lineJoin='round';
+  return ctx;
+}
+
+const sigCanvas=document.getElementById('sigCanvas');
+let sigCtx,drawing=false,lastX,lastY;
+
+function initSig(){
+  sigCtx=setupCanvas(sigCanvas);
+}
+
+function getPos(e,canvas){
+  const rect=canvas.getBoundingClientRect();
+  const touch=e.touches?e.touches[0]:e;
+  return{x:touch.clientX-rect.left,y:touch.clientY-rect.top};
+}
+
+sigCanvas.addEventListener('mousedown',e=>{
+  drawing=true;
+  const p=getPos(e,sigCanvas);
+  lastX=p.x;lastY=p.y;
+  sigCtx.beginPath();sigCtx.moveTo(lastX,lastY);
+});
+sigCanvas.addEventListener('mousemove',e=>{
+  if(!drawing)return;
+  const p=getPos(e,sigCanvas);
+  sigCtx.lineTo(p.x,p.y);sigCtx.stroke();
+  lastX=p.x;lastY=p.y;
+  hasSig=true;
+  document.getElementById('sigWrap').classList.add('has-sig');
+});
+sigCanvas.addEventListener('mouseup',()=>drawing=false);
+sigCanvas.addEventListener('mouseleave',()=>drawing=false);
+
+sigCanvas.addEventListener('touchstart',e=>{
+  e.preventDefault();drawing=true;
+  const p=getPos(e,sigCanvas);lastX=p.x;lastY=p.y;
+  sigCtx.beginPath();sigCtx.moveTo(lastX,lastY);
+},{passive:false});
+sigCanvas.addEventListener('touchmove',e=>{
+  e.preventDefault();if(!drawing)return;
+  const p=getPos(e,sigCanvas);
+  sigCtx.lineTo(p.x,p.y);sigCtx.stroke();
+  lastX=p.x;lastY=p.y;
+  hasSig=true;
+  document.getElementById('sigWrap').classList.add('has-sig');
+},{passive:false});
+sigCanvas.addEventListener('touchend',()=>drawing=false);
+
+function clearSig(){
+  const dpr=window.devicePixelRatio||1;
+  sigCtx.clearRect(0,0,sigCanvas.width/dpr,sigCanvas.height/dpr);
+  hasSig=false;
+  document.getElementById('sigWrap').classList.remove('has-sig');
+}
+
+// Typed signature
+function renderTypedSig(){
+  const val=document.getElementById('typedSigInput').value;
+  const canvas=document.getElementById('sigCanvasType');
+  const rect=canvas.getBoundingClientRect();
+  const dpr=window.devicePixelRatio||1;
+  canvas.width=rect.width*dpr;
+  canvas.height=100*dpr;
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,rect.width,100);
+  if(val){
+    ctx.font=`italic 36px 'Noto Sans SC', Georgia, serif`;
+    ctx.fillStyle='#0F0F0F';
+    ctx.textBaseline='middle';
+    ctx.fillText(val,20,50);
+    hasTypedSig=true;
+    document.getElementById('sigWrapType').classList.add('has-sig');
+  } else {
+    hasTypedSig=false;
+    document.getElementById('sigWrapType').classList.remove('has-sig');
+  }
+}
+
+function getSigDataUrl(){
+  if(sigMode==='handwrite'){
+    return hasSig?sigCanvas.toDataURL('image/png'):null;
+  } else {
+    return hasTypedSig?document.getElementById('sigCanvasType').toDataURL('image/png'):null;
+  }
+}
+
+// ── BUILD REVIEW ──
+function buildReview(){
+  const childName=v('chinese_name');
+  document.getElementById('consent_child_name').value=childName;
+
+  const emergSame=document.querySelector('input[name="emergency_same"]:checked')?.value;
+  const emergName=emergSame==='yes'?v('parent_name'):v('emergency_name');
+  const emergPhone=emergSame==='yes'?v('parent_phone'):v('emergency_phone');
+
+  const html=`
+    <div class="review-card">
+      <div class="review-section-label">营员资料</div>
+      <div class="review-row"><span class="review-key">中文姓名</span><span class="review-val">${childName}</span></div>
+      <div class="review-row"><span class="review-key">英文姓名</span><span class="review-val">${v('english_name')}</span></div>
+      <div class="review-row"><span class="review-key">性别</span><span class="review-val">${rv('gender')}</span></div>
+      <div class="review-row"><span class="review-key">出生日期</span><span class="review-val">${v('dob')} （${v('age_hidden')} 岁）</span></div>
+      <div class="review-row"><span class="review-key">就读学校</span><span class="review-val">${v('school')}</span></div>
+    </div>
+    <div class="review-card">
+      <div class="review-section-label">家长资料</div>
+      <div class="review-row"><span class="review-key">家长姓名</span><span class="review-val">${v('parent_name')}</span></div>
+      <div class="review-row"><span class="review-key">关系</span><span class="review-val">${rv('relationship')}</span></div>
+      <div class="review-row"><span class="review-key">联络电话</span><span class="review-val">${v('parent_phone')}</span></div>
+      <div class="review-row"><span class="review-key">电邮</span><span class="review-val">${v('email')}</span></div>
+      <div class="review-row"><span class="review-key">紧急联络</span><span class="review-val">${emergName} · ${emergPhone}</span></div>
+    </div>
+    <div class="review-card">
+      <div class="review-section-label">营队资料</div>
+      <div class="review-row"><span class="review-key">T-shirt 尺寸</span><span class="review-val">${v('tshirt_size')}</span></div>
+      <div class="review-row"><span class="review-key">曾参加</span><span class="review-val">${v('attendance_history')==='yes'?'有，曾参加':'否，第一次'}</span></div>
+      <div class="review-row"><span class="review-key">付款凭证</span><span class="review-val">${receiptFileName||'—'}</span></div>
+    </div>
+    <div class="fee-row">
+      <span class="fee-label">应缴营费</span>
+      <span class="fee-amount">RM 60.00</span>
+    </div>`;
+  document.getElementById('reviewContent').innerHTML=html;
+}
+
+function v(id){return (document.getElementById(id)||{}).value||'';}
+function rv(name){return document.querySelector(`input[name="${name}"]:checked`)?.value||'';}
+
+// ── STEP VALIDATION ──
+function showErr(id,msg){
+  const el=document.getElementById('err-'+id);
+  if(!el)return;
+  el.textContent=msg;
+  el.classList.add('show');
+  const input=document.getElementById(id);
+  if(input)input.classList.add('invalid');
+}
+function clearErr(id){
+  const el=document.getElementById('err-'+id);
+  if(!el)return;
+  el.textContent='';
+  el.classList.remove('show');
+  const input=document.getElementById(id);
+  if(input)input.classList.remove('invalid');
+}
+
+function validateStep(step){
+  let ok=true;
+
+  if(step===1){
+    // Chinese name (camper)
+    const cnEl=document.getElementById('chinese_name');
+    const cnErr=document.getElementById('err-chinese_name');
+    const cnVal=cnEl.value.trim();
+    if(!cnVal){
+      cnErr.textContent='请输入中文姓名（必填）。';
+      cnErr.classList.add('show');
+      cnEl.classList.add('invalid');
+      ok=false;
+    } else if(!CHINESE_REGEX.test(cnVal)){
+      cnErr.textContent='请输入纯中文姓名，不含英文、数字或符号。';
+      cnErr.classList.add('show');
+      cnEl.classList.add('invalid');
+      ok=false;
+    } else {
+      cnErr.classList.remove('show');
+      cnEl.classList.remove('invalid');
+      cnEl.classList.add('valid');
+    }
+
+    // English name
+    if(!v('english_name').trim()){showErr('english_name','请输入英文姓名。');ok=false;}
+    else clearErr('english_name');
+
+    // Gender
+    if(!rv('gender')){showErr('gender','请选择性别。');ok=false;}
+    else clearErr('gender');
+
+    // DOB
+    const dobVal=v('dob');
+    if(!dobVal){showErr('dob','请选择出生日期。');ok=false;}
+    else {
+      const age=parseInt(v('age_hidden'));
+      if(isNaN(age)||age<8||age>12){showErr('dob','年龄不符合报名资格（8–12 岁）。');ok=false;}
+      else clearErr('dob');
+    }
+
+    // School
+    if(!v('school').trim()){showErr('school','请填写就读学校。');ok=false;}
+    else clearErr('school');
+  }
+
+  if(step===2){
+    // Parent name — must be Chinese characters
+    const pnVal=v('parent_name').trim();
+    if(!pnVal){showErr('parent_name','请填写家长/监护人中文姓名（必填）。');ok=false;}
+    else if(!CHINESE_REGEX.test(pnVal)){showErr('parent_name','请输入纯中文姓名，不含英文、数字或符号。');ok=false;}
+    else clearErr('parent_name');
+
+    if(!rv('relationship')){showErr('relationship','请选择与学童关系。');ok=false;}
+    else clearErr('relationship');
+
+    const phone=v('parent_phone').replace(/[\s-]/g,'');
+    if(!phone||!/^\+?\d{8,15}$/.test(phone)){showErr('parent_phone','请输入有效的手机号码。');ok=false;}
+    else clearErr('parent_phone');
+
+    const email=v('email');
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showErr('email','请输入有效的电子邮件地址。');ok=false;}
+    else clearErr('email');
+
+    if(!v('address').trim()){showErr('address','请填写住家地址。');ok=false;}
+    else clearErr('address');
+
+    const emergSame=document.querySelector('input[name="emergency_same"]:checked')?.value;
+    if(!emergSame){showErr('emergency_same','请选择紧急联络人选项。');ok=false;}
+    else clearErr('emergency_same');
+
+    if(emergSame==='no'){
+      const enVal=v('emergency_name').trim();
+      if(!enVal){showErr('emergency_name','请填写紧急联络人中文姓名（必填）。');ok=false;}
+      else if(!CHINESE_REGEX.test(enVal)){showErr('emergency_name','请输入纯中文姓名，不含英文、数字或符号。');ok=false;}
+      else clearErr('emergency_name');
+      const ep=v('emergency_phone').replace(/[\s-]/g,'');
+      if(!ep||!/^\+?\d{8,15}$/.test(ep)){showErr('emergency_phone','请输入有效的紧急联络人电话。');ok=false;}
+      else clearErr('emergency_phone');
+      if(!rv('emergency_relationship')){showErr('emergency_relationship','请选择紧急联络人关系。');ok=false;}
+      else clearErr('emergency_relationship');
+    }
+  }
+
+  if(step===3){
+    if(!v('tshirt_size')){showErr('tshirt_size','请选择 T-shirt 尺寸。');ok=false;}
+    else clearErr('tshirt_size');
+    if(!v('attendance_history')){showErr('attendance_history','请选择参营记录。');ok=false;}
+    else clearErr('attendance_history');
+    if(!currentReceiptData){showErr('receipt','请上传付款凭证截图。');ok=false;}
+    else clearErr('receipt');
+  }
+
+  if(step===4){
+    // Consent parent name — must be Chinese
+    const cpnEl=document.getElementById('consent_parent_name');
+    const cpnErr=document.getElementById('err-consent_parent_name');
+    const cpnVal=cpnEl.value.trim();
+    if(!cpnVal){
+      cpnErr.textContent='请填写家长中文姓名（必填）。';
+      cpnErr.classList.add('show');
+      cpnEl.style.borderBottomColor='var(--error)';
+      ok=false;
+    } else if(!CHINESE_REGEX.test(cpnVal)){
+      cpnErr.textContent='请输入纯中文姓名，不含英文、数字或符号。';
+      cpnErr.classList.add('show');
+      cpnEl.style.borderBottomColor='var(--error)';
+      ok=false;
+    } else {
+      cpnErr.textContent='';
+      cpnErr.classList.remove('show');
+      cpnEl.style.borderBottomColor='';
+    }
+
+    // IC number
+    const icEl  = document.getElementById('consent_ic');
+const icErr = document.getElementById('err-consent_ic');
+const icVal = icEl.value.trim();
+if (!icVal) {
+  icErr.textContent = '请填写身份证号码（必填）。';
+  icErr.classList.add('show');
+  icEl.style.borderBottomColor = 'var(--error)';
+  ok = false;
+} else if (!validateMyIC(icVal)) {
+  icErr.textContent = '请输入有效的大马身份证号码格式（例如：900101-14-5678）。';
+  icErr.classList.add('show');
+  icEl.style.borderBottomColor = 'var(--error)';
+  ok = false;
+} else {
+  icErr.textContent = '';
+  icErr.classList.remove('show');
+  icEl.style.borderBottomColor = 'var(--success)';
+}
+
+    const sigData=getSigDataUrl();
+    if(!sigData){
+      showErr('signature','请完成签名后再提交。');ok=false;
+    } else {
+      clearErr('signature');
+    }
+  }
+
+  if(!ok){
+    // Scroll to first error
+    const firstErr=document.querySelector('.error-hint.show, .invalid');
+    if(firstErr)firstErr.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  return ok;
+}
+
+// ── NAVIGATION ──
+function nextStep(){
+  if(!validateStep(currentStep))return;
+  if(currentStep<TOTAL_STEPS-1){
+    currentStep++;
+    updateStepper();
+    showPanel(currentStep,'right');
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(currentStep===4)buildReview();
+  }
+}
+
+function prevStep(){
+  if(currentStep>0){
+    currentStep--;
+    updateStepper();
+    showPanel(currentStep,'left');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+
+// ── SUBMIT ──
+async function submitForm(){
+  if(!validateStep(4))return;
+
+  const sigDataUrl=getSigDataUrl();
+
+  const payload={
+    timestamp:new Date().toISOString(),
+    // Camper
+    chinese_name:v('chinese_name'),
+    english_name:v('english_name'),
+    gender:rv('gender'),
+    dob:v('dob'),
+    age:v('age_hidden'),
+    school:v('school'),
+    // Parent
+    parent_name:v('parent_name'),
+    relationship:rv('relationship'),
+    parent_phone:v('parent_phone'),
+    email:v('email'),
+    address:v('address'),
+    // Emergency
+    emergency_same:document.querySelector('input[name="emergency_same"]:checked')?.value,
+    emergency_name:document.querySelector('input[name="emergency_same"]:checked')?.value==='yes'?v('parent_name'):v('emergency_name'),
+    emergency_phone:document.querySelector('input[name="emergency_same"]:checked')?.value==='yes'?v('parent_phone'):v('emergency_phone'),
+    emergency_relationship:document.querySelector('input[name="emergency_same"]:checked')?.value==='yes'?rv('relationship'):rv('emergency_relationship'),
+    // Camp
+    tshirt_size:v('tshirt_size'),
+    attendance_history:v('attendance_history'),
+    // Consent
+    consent_parent_name:v('consent_parent_name'),
+    consent_ic:v('consent_ic'),
+    consent_role:v('consent_role'),
+    consent_child_name:  v('chinese_name'),  
+    // Payment
+    receipt_filename:receiptFileName,
+    receipt_filetype:receiptFileType,
+    receipt_data:currentReceiptData,
+    // Signature
+    signature_data:sigDataUrl?sigDataUrl.split(',')[1]:null,
+    fee:'RM 60.00'
+  };
+
+  document.getElementById('loadingOverlay').classList.add('show');
+
+  try{
+    const resp=await fetch(API_ENDPOINT,{method:'POST',body:JSON.stringify(payload)});
+    const data=await resp.json();
+    document.getElementById('loadingOverlay').classList.remove('show');
+
+    if(data.status==='success'||data.result==='success'){
+      showSuccess(data);
+    } else {
+      alert('提交失败，请稍后再试。错误：'+(data.message||JSON.stringify(data)));
+    }
+  }catch(err){
+    document.getElementById('loadingOverlay').classList.remove('show');
+    alert('网络错误，请检查连线后再试。\n'+err.message);
+  }
+}
+
+// ── SUCCESS ──
+function showSuccess(data){
+  const regId=data.receiptId ;
+  document.getElementById('successId').textContent=regId;
+  document.getElementById('successTime').textContent=new Date().toLocaleString('zh-MY');
+  document.getElementById('successSummary').innerHTML=`
+    <div style="text-align:left;font-size:12px;color:var(--text-secondary);display:grid;gap:4px;">
+      <div>🧒 营员：<strong>${v('chinese_name')}</strong> (${v('english_name')})</div>
+      <div>👨‍👩‍👦 家长：<strong>${v('parent_name')}</strong> · ${v('parent_phone')}</div>
+      <div>👕 尺寸：<strong>${v('tshirt_size')}</strong></div>
+      <div>📅 活动：2026年8月29—30日</div>
+    </div>`;
+  document.querySelector('.form-wrap').style.paddingBottom='40px';
+  document.getElementById('navBar').style.display='none';
+  document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('successScreen').classList.add('show');
+  buildPrintReceipt(regId);
+}
+
+function buildPrintReceipt(regId){
+  document.getElementById('printReceipt').innerHTML=`
+    <div class="pr-header">
+                        <img src="https://donate.093.org.tw/images/icon/093_logo.png"
+                    alt="Ling Jiou Mountain Buddhist Society Logo"
+                    style="height: 60px; width: auto; margin-bottom: 10px; display: inline-block;">
+      <h1>小菩萨快乐学佛营 2026 — 报名确认</h1>
+      <h2>灵鹫山马来西亚佛学会</h2>
+      <p style="font-size:11px;color:#888;margin-top:4px">报名编号：${regId} · 日期：${new Date().toLocaleDateString('zh-MY')}</p>
+    </div>
+    <div class="pr-row"><span class="pr-k">营员中文姓名</span>${v('chinese_name')}</div>
+    <div class="pr-row"><span class="pr-k">营员英文姓名</span>${v('english_name')}</div>
+    <div class="pr-row"><span class="pr-k">性别</span>${rv('gender')}</div>
+    <div class="pr-row"><span class="pr-k">出生日期</span>${v('dob')}</div>
+    <div class="pr-row"><span class="pr-k">就读学校</span>${v('school')}</div>
+    <div class="pr-row"><span class="pr-k">家长姓名</span>${v('parent_name')}</div>
+    <div class="pr-row"><span class="pr-k">联络电话</span>${v('parent_phone')}</div>
+    <div class="pr-row"><span class="pr-k">电子邮件</span>${v('email')}</div>
+    <div class="pr-row"><span class="pr-k">T-shirt 尺寸</span>${v('tshirt_size')}</div>
+    <div class="pr-row"><span class="pr-k">应缴营费</span><strong>RM 60.00</strong></div>
+    <div class="pr-row"><span class="pr-k">活动日期</span>2026年 8月 29—30 日</div>
+    <div class="pr-row"><span class="pr-k">活动地点</span>SJK(C) Subang 梳邦华小</div>
+    <div class="pr-footer">本收据由系统自动生成 · 如有疑问请联络 +6012-883 2618（秀萍）</div>`;
+}
+
+function doPrint(){window.print();}
+
+function resetForm(){location.reload();}
+
+// ── SIG TYPED PANEL resize ──
+function resizeSigTypeCanvas(){
+  const canvas=document.getElementById('sigCanvasType');
+  if(canvas&&document.getElementById('sigPanelType').style.display!=='none'){
+    renderTypedSig();
+  }
+}
+window.addEventListener('resize',()=>{
+  initSig();
+  resizeSigTypeCanvas();
+});
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  updateStepper();
+  initSig();
+
+
+
+  // Attach Chinese-name validation to camper Chinese name field (Step 1)
+  attachChineseNameListeners(
+    document.getElementById('chinese_name'),
+    document.getElementById('err-chinese_name')
+  );
+
+  // Attach Chinese-name validation to parent/guardian name field (Step 2)
+  attachChineseNameListeners(
+    document.getElementById('parent_name'),
+    document.getElementById('err-parent_name')
+  );
+
+  // Attach Chinese-name validation to emergency contact name field (Step 2, conditional)
+  attachChineseNameListeners(
+    document.getElementById('emergency_name'),
+    document.getElementById('err-emergency_name')
+  );
+
+  // Attach Chinese-name validation to consent parent name field (Step 4)
+  // Note: consent_parent_name uses inline style for border-bottom, so we need
+  // a slightly different visual feedback approach
+  const consentParentInput = document.getElementById('consent_parent_name');
+  const consentParentErr   = document.getElementById('err-consent_parent_name');
+  composingState['consent_parent_name'] = false;
+
+  consentParentInput.addEventListener('compositionstart', () => {
+    composingState['consent_parent_name'] = true;
+  });
+  consentParentInput.addEventListener('compositionend', () => {
+    composingState['consent_parent_name'] = false;
+    const cleaned = stripNonChinese(consentParentInput.value);
+    if (consentParentInput.value !== cleaned) consentParentInput.value = cleaned;
+    // Validate and show inline error
+    const val = consentParentInput.value.trim();
+    if (val && !CHINESE_REGEX.test(val)) {
+      consentParentErr.textContent = '请输入纯中文姓名，不含英文、数字或符号。';
+      consentParentErr.classList.add('show');
+      consentParentInput.style.borderBottomColor = 'var(--error)';
+    } else {
+      consentParentErr.textContent = '';
+      consentParentErr.classList.remove('show');
+      consentParentInput.style.borderBottomColor = '';
+    }
+  });
+  consentParentInput.addEventListener('input', () => {
+    if (composingState['consent_parent_name']) return;
+    const cleaned = stripNonChinese(consentParentInput.value);
+    if (consentParentInput.value !== cleaned) consentParentInput.value = cleaned;
+    const val = consentParentInput.value.trim();
+    if (val && !CHINESE_REGEX.test(val)) {
+      consentParentErr.textContent = '请输入纯中文姓名，不含英文、数字或符号。';
+      consentParentErr.classList.add('show');
+      consentParentInput.style.borderBottomColor = 'var(--error)';
+    } else {
+      consentParentErr.textContent = '';
+      consentParentErr.classList.remove('show');
+      consentParentInput.style.borderBottomColor = '';
+    }
+  });
+  consentParentInput.addEventListener('blur', () => {
+    composingState['consent_parent_name'] = false;
+    const cleaned = stripNonChinese(consentParentInput.value);
+    if (consentParentInput.value !== cleaned) consentParentInput.value = cleaned;
+    const val = consentParentInput.value.trim();
+    if (!val) {
+      consentParentErr.textContent = '请填写家长中文姓名（必填）。';
+      consentParentErr.classList.add('show');
+      consentParentInput.style.borderBottomColor = 'var(--error)';
+    } else if (!CHINESE_REGEX.test(val)) {
+      consentParentErr.textContent = '请输入纯中文姓名，不含英文、数字或符号。';
+      consentParentErr.classList.add('show');
+      consentParentInput.style.borderBottomColor = 'var(--error)';
+    } else {
+      consentParentErr.textContent = '';
+      consentParentErr.classList.remove('show');
+      consentParentInput.style.borderBottomColor = '';
+    }
+  });
+});
+</script>
+</body>
+</html>
