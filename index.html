@@ -1178,21 +1178,42 @@ function toggleEmergency(){
 // ── DOB / AGE ──
 // Mobile browsers (iOS Safari, Android Chrome) sometimes ignore min/max on
 // date inputs. We clamp the value in JS so the constraint is always enforced.
-document.getElementById('dob').addEventListener('change',function(){
-  if(!this.value) return;
-  const MIN='2013-01-01', MAX='2019-12-31';
-  const errEl=document.getElementById('err-dob');
+const dobInput = document.getElementById('dob');
+const dobMin = '2013-01-01', dobMax = '2019-12-31';
+dobInput.setAttribute('min', dobMin);
+dobInput.setAttribute('max', dobMax);
 
+// Fix: On mobile, show placeholder and force input type if needed
+function isMobile() {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+if (isMobile()) {
+  dobInput.setAttribute('placeholder', '请选择日期 (2013-01-01 至 2019-12-31)');
+  // Fallback: If input type=date is not supported, fallback to text
+  if (dobInput.type !== 'date') {
+    dobInput.type = 'text';
+    dobInput.addEventListener('focus', function() {
+      this.type = 'date';
+    });
+    dobInput.addEventListener('blur', function() {
+      if (!this.value) this.type = 'text';
+    });
+  }
+}
+
+dobInput.addEventListener('change',function(){
+  if(!this.value) return;
+  const errEl=document.getElementById('err-dob');
   // Clamp out-of-range dates silently
-  if(this.value < MIN){
-    this.value = MIN;
+  if(this.value < dobMin){
+    this.value = dobMin;
     errEl.textContent='出生日期最早为 2013 年 1 月 1 日。';
     errEl.classList.add('show');
     document.getElementById('ageBadgeWrap').style.display='none';
     return;
   }
-  if(this.value > MAX){
-    this.value = MAX;
+  if(this.value > dobMax){
+    this.value = dobMax;
     errEl.textContent='出生日期最晚为 2019 年 12 月 31 日。';
     errEl.classList.add('show');
     document.getElementById('ageBadgeWrap').style.display='none';
@@ -1215,54 +1236,6 @@ document.getElementById('dob').addEventListener('change',function(){
   } else {
     errEl.textContent='';
     errEl.classList.remove('show');
-  }
-});
-
-// ── RECEIPT UPLOAD ──
-document.getElementById('receipt').addEventListener('change',function(){
-  const file=this.files[0];
-  const errEl=document.getElementById('err-receipt');
-  if(!file)return;
-  if(file.size>5*1024*1024){
-    errEl.textContent='文件大小不能超过 5MB。';
-    errEl.classList.add('show');
-    this.value='';
-    return;
-  }
-  const allowed=['image/jpeg','image/png','image/gif','image/webp','application/pdf'];
-  if(!allowed.includes(file.type)){
-    errEl.textContent='仅支持 JPG、PNG、GIF、WEBP、PDF 文件。';
-    errEl.classList.add('show');
-    this.value='';
-    return;
-  }
-  errEl.classList.remove('show');
-  receiptFileName=file.name;
-  receiptFileType=file.type;
-  const zone=document.getElementById('uploadZone');
-  zone.classList.add('has-file');
-  const nameEl=document.getElementById('uploadName');
-  nameEl.textContent='✓ '+file.name;
-  nameEl.style.display='block';
-  const reader=new FileReader();
-  reader.onload=e=>{
-    receiptDataUrl=e.target.result;
-    currentReceiptData=e.target.result.split(',')[1];
-  };
-  reader.readAsDataURL(file);
-});
-
-// Drag-drop
-const uploadZone=document.getElementById('uploadZone');
-uploadZone.addEventListener('dragover',e=>{e.preventDefault();uploadZone.classList.add('dragover');});
-uploadZone.addEventListener('dragleave',()=>uploadZone.classList.remove('dragover'));
-uploadZone.addEventListener('drop',e=>{
-  e.preventDefault();uploadZone.classList.remove('dragover');
-  const file=e.dataTransfer.files[0];
-  if(file){
-    const dt=new DataTransfer();dt.items.add(file);
-    document.getElementById('receipt').files=dt.files;
-    document.getElementById('receipt').dispatchEvent(new Event('change'));
   }
 });
 
@@ -1307,45 +1280,63 @@ let sigCtx,drawing=false,lastX,lastY;
 
 function initSig(){
   sigCtx=setupCanvas(sigCanvas);
+  // Fix: Remove previous listeners to avoid stacking
+  sigCanvas.onpointerdown = null;
+  sigCanvas.onpointermove = null;
+  sigCanvas.onpointerup = null;
+  sigCanvas.onpointerleave = null;
+  sigCanvas.ontouchstart = null;
+  sigCanvas.ontouchmove = null;
+  sigCanvas.ontouchend = null;
+
+  // Use pointer events for better mobile support
+  sigCanvas.addEventListener('pointerdown', pointerDown, {passive: false});
+  sigCanvas.addEventListener('pointermove', pointerMove, {passive: false});
+  sigCanvas.addEventListener('pointerup', pointerUp, {passive: false});
+  sigCanvas.addEventListener('pointerleave', pointerUp, {passive: false});
 }
 
-function getPos(e,canvas){
+function getPosPointer(e,canvas){
   const rect=canvas.getBoundingClientRect();
-  const touch=e.touches?e.touches[0]:e;
-  return{x:touch.clientX-rect.left,y:touch.clientY-rect.top};
+  let x, y;
+  if (e.touches && e.touches.length > 0) {
+    x = e.touches[0].clientX - rect.left;
+    y = e.touches[0].clientY - rect.top;
+  } else {
+    x = e.clientX - rect.left;
+    y = e.clientY - rect.top;
+  }
+  return {x, y};
 }
 
-sigCanvas.addEventListener('mousedown',e=>{
+function pointerDown(e){
+  e.preventDefault();
   drawing=true;
-  const p=getPos(e,sigCanvas);
+  const p=getPosPointer(e,sigCanvas);
   lastX=p.x;lastY=p.y;
   sigCtx.beginPath();sigCtx.moveTo(lastX,lastY);
-});
-sigCanvas.addEventListener('mousemove',e=>{
+}
+function pointerMove(e){
   if(!drawing)return;
-  const p=getPos(e,sigCanvas);
+  e.preventDefault();
+  const p=getPosPointer(e,sigCanvas);
   sigCtx.lineTo(p.x,p.y);sigCtx.stroke();
   lastX=p.x;lastY=p.y;
   hasSig=true;
   document.getElementById('sigWrap').classList.add('has-sig');
-});
-sigCanvas.addEventListener('mouseup',()=>drawing=false);
-sigCanvas.addEventListener('mouseleave',()=>drawing=false);
+}
+function pointerUp(e){
+  drawing=false;
+}
 
-sigCanvas.addEventListener('touchstart',e=>{
-  e.preventDefault();drawing=true;
-  const p=getPos(e,sigCanvas);lastX=p.x;lastY=p.y;
-  sigCtx.beginPath();sigCtx.moveTo(lastX,lastY);
-},{passive:false});
-sigCanvas.addEventListener('touchmove',e=>{
-  e.preventDefault();if(!drawing)return;
-  const p=getPos(e,sigCanvas);
-  sigCtx.lineTo(p.x,p.y);sigCtx.stroke();
-  lastX=p.x;lastY=p.y;
-  hasSig=true;
-  document.getElementById('sigWrap').classList.add('has-sig');
-},{passive:false});
-sigCanvas.addEventListener('touchend',()=>drawing=false);
+// Remove old mouse/touch listeners if present
+sigCanvas.removeEventListener('mousedown',()=>{});
+sigCanvas.removeEventListener('mousemove',()=>{});
+sigCanvas.removeEventListener('mouseup',()=>{});
+sigCanvas.removeEventListener('mouseleave',()=>{});
+sigCanvas.removeEventListener('touchstart',()=>{});
+sigCanvas.removeEventListener('touchmove',()=>{});
+sigCanvas.removeEventListener('touchend',()=>{});
 
 function clearSig(){
   const dpr=window.devicePixelRatio||1;
