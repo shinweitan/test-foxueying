@@ -217,6 +217,31 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
   content:'';width:6px;height:6px;border-radius:50%;background:var(--brand);
 }
 
+/* ── ATTENDANCE TIMES SUB-FIELD ── */
+.attendance-times-wrap{
+  margin-top:14px;
+  background:var(--brand-subtle);
+  border:1px solid #FFCDB8;
+  border-radius:var(--radius-sm);
+  padding:14px 16px;
+  animation:slideIn 0.2s ease;
+}
+.attendance-times-wrap .sub-label{
+  font-size:12px;font-weight:600;color:var(--brand-dark);
+  margin-bottom:10px;display:flex;align-items:center;gap:6px;
+}
+.attendance-times-wrap .radio-group{flex-wrap:wrap;gap:8px;}
+.attendance-times-wrap .radio-pill{
+  font-size:12px;padding:6px 14px;
+  border-color:#FFCDB8;
+}
+.attendance-times-wrap .radio-pill:has(input:checked){
+  background:var(--brand);border-color:var(--brand);color:#fff;
+}
+.attendance-times-wrap .radio-pill:has(input:checked) .dot::after{
+  background:#fff;
+}
+
 /* ── AGE BADGE ── */
 .age-badge{
   display:inline-flex;align-items:center;gap:6px;
@@ -278,17 +303,21 @@ canvas{
 }
 .sig-actions{
   display:flex;align-items:center;justify-content:space-between;
-  padding:8px 12px;border-top:1px solid var(--border);
-  background:#FAFAF8;
+  padding:10px 14px;border-top:1px solid var(--border);
+  background:#FAFAF8;gap:10px;
 }
+/* ── REDO / CLEAR BUTTON — prominent ── */
 .clear-btn{
-  font-size:12px;color:#DC2626;font-weight:500;
-  background:none;border:1px solid #FECACA;
-  border-radius:6px;padding:4px 12px;cursor:pointer;
-  transition:all var(--transition);
+  display:flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:700;color:#fff;
+  background:#DC2626;border:none;
+  border-radius:8px;padding:8px 16px;cursor:pointer;
+  transition:all var(--transition);flex-shrink:0;
+  box-shadow:0 2px 6px rgba(220,38,38,0.30);
 }
-.clear-btn:hover{background:#FEF2F2;}
-.sig-hint{font-size:11px;color:var(--text-tertiary);}
+.clear-btn:hover{background:#b91c1c;box-shadow:0 3px 10px rgba(220,38,38,0.40);}
+.clear-btn:active{transform:scale(0.97);}
+.sig-hint{font-size:11px;color:var(--text-tertiary);line-height:1.4;}
 
 /* ── CHECKBOX ── */
 .checkbox-row{
@@ -447,13 +476,15 @@ canvas{
   .stepper .step-item:not(:last-child)::after{margin:0 4px;}
   .form-card{padding:16px;}
   .nav-bar{padding:10px 16px 14px;}
+  /* Signature canvas: shorter height on mobile for easier signing */
+  canvas#sigCanvas{ height:110px !important; }
+  .sig-hint{ display:none; }
 }
 </style>
 </head>
 <body>
 
-
-    <!-- FULL BLOCKER -->
+<!-- FULL BLOCKER -->
 <div class="expired-overlay" id="fullOverlay">
   <div class="expired-icon">🙏</div>
   <div class="expired-title">报名名额已满</div>
@@ -462,8 +493,6 @@ canvas{
     如有疑问，请联络 <strong style="color:#D4500A">+6012-883 2618（秀萍）</strong>
   </div>
 </div>
-
-
 
 <!-- EXPIRY BLOCKER -->
 <div class="expired-overlay" id="expiredOverlay">
@@ -584,17 +613,18 @@ canvas{
           户名：Persatuan Penganut Agama Buddha Ling Jiou San Malaysia
         </div>
         <div style="margin-top:12px;font-size:12px;">
-          <strong style="color:var(--text-primary)">注意事项：</strong>
+          <strong style="color:var(--text-primary)">报名注意事项：</strong>
           <ol style="padding-left:18px;margin-top:6px;display:grid;gap:4px;color:var(--text-secondary)">
-            <li>请勿携带贵重物品，如有遗失主办当局恕不负责。</li>
-            <li>如有必要请携带私人药物。</li>
-            <li>如有食物过敏或健康状况，请立即通知联络人。</li>
+            <li>请别携带贵重物品，如有遗失，主办当局恕不负责。</li>
+            <li>如有必要，请携带私人药物。</li>
+            <li>若有食物过敏及个人身体状况，请立即通知联络人。</li>
             <li>如有必要营员将会面试后方可入取参与。</li>
             <li>请不要无故缺席，以免浪费名额。</li>
-            <li>退出或缺席者，营费将不被退还。</li>
-            <li>营期间严禁使用手提电话。</li>
-            <li>本简章主办当局有权增删。</li>
-            <li>营前将透过群组通知信息。</li>
+            <li>反退出或缺席者，营费将不被退换。营员若有事无法出席，请立即通知联络人。</li>
+            <li>严禁在营队进行時使用手提电话，以免影响活动的进行。</li>
+            <li>本简章如有未近善之处，主办当局有权增删之。</li>
+            <li>营前会透过群组通知信息。</li>
+            <li>截至报名日期：2026年 8月23日。</li>
           </ol>
         </div>
         <div style="margin-top:12px;font-size:12px;color:var(--text-secondary)">
@@ -637,7 +667,7 @@ canvas{
 
       <div class="field">
         <label class="req" for="english_name">英文姓名</label>
-        <input type="text" id="english_name" placeholder="As per IC / Passport">
+        <input type="text" id="english_name" placeholder="As per MyKid / Passport">
         <div class="field-hint error-hint" id="err-english_name"></div>
       </div>
 
@@ -783,14 +813,33 @@ canvas{
         <div class="field-hint error-hint" id="err-tshirt_size"></div>
       </div>
 
+      <!-- ── ATTENDANCE HISTORY — radio pills + conditional times ── -->
       <div class="field">
-        <label class="req" for="attendance_history">曾参加过我们的学佛营？</label>
-        <select id="attendance_history">
-          <option value="">— 请选择 —</option>
-          <option value="yes">有，曾参加</option>
-          <option value="no">无，这是第一次</option>
-        </select>
+        <label class="req">曾参加过我们的学佛营？</label>
+        <div class="radio-group">
+          <label class="radio-pill">
+            <input type="radio" name="attendance_history" value="yes" onchange="toggleAttendanceTimes()">
+            <div class="dot"></div>✅ 有，曾参加
+          </label>
+          <label class="radio-pill">
+            <input type="radio" name="attendance_history" value="no" onchange="toggleAttendanceTimes()">
+            <div class="dot"></div>🔰 无，这是第一次
+          </label>
+        </div>
         <div class="field-hint error-hint" id="err-attendance_history"></div>
+
+        <!-- Sub-question: how many times -->
+        <div class="attendance-times-wrap" id="attendanceTimesWrap" style="display:none;">
+          <div class="sub-label">👉 请继续选择参加过几次：</div>
+          <div class="radio-group">
+            <label class="radio-pill"><input type="radio" name="attendance_times" value="1次"><div class="dot"></div>1次</label>
+            <label class="radio-pill"><input type="radio" name="attendance_times" value="2次"><div class="dot"></div>2次</label>
+            <label class="radio-pill"><input type="radio" name="attendance_times" value="3次"><div class="dot"></div>3次</label>
+            <label class="radio-pill"><input type="radio" name="attendance_times" value="4次"><div class="dot"></div>4次</label>
+            <label class="radio-pill"><input type="radio" name="attendance_times" value="5次或以上"><div class="dot"></div>5次或以上</label>
+          </div>
+          <div class="field-hint error-hint" id="err-attendance_times" style="margin-top:6px;"></div>
+        </div>
       </div>
 
       <div class="field" style="margin-bottom:0">
@@ -854,11 +903,19 @@ canvas{
       </div>
 
       <div id="sigPanelHandwrite">
+        <!-- Instructions banner -->
+        <div style="background:#FFF7F4;border:1px solid #FFCDB8;border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:10px;font-size:12px;color:var(--brand-dark);display:flex;align-items:center;gap:8px;">
+          <span style="font-size:16px">✍️</span>
+          <span>请在下方白色格子内用手指或鼠标签名。签错了？按红色 <strong>重新签名</strong> 按钮即可清除重来。</span>
+        </div>
         <div class="sig-wrap" id="sigWrap">
-          <canvas id="sigCanvas" height="160"></canvas>
+          <canvas id="sigCanvas" height="140"></canvas>
           <div class="sig-actions">
-            <button type="button" class="clear-btn" onclick="clearSig()">↺ 清除重签</button>
-            <span class="sig-hint">鼠标拖曳 / 触屏均可签名</span>
+            <button type="button" class="clear-btn" onclick="clearSig()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+              重新签名
+            </button>
+            <span class="sig-hint">手指滑动即可签名</span>
           </div>
         </div>
       </div>
@@ -908,17 +965,14 @@ function checkExpiry(){
   }
 }
 checkExpiry();
-checkCapacity();  // ← add this line
-
+checkCapacity();
 
 async function checkCapacity() {
   try {
     const resp = await fetch(API_ENDPOINT);
     const data = await resp.json();
-
     const chip = document.getElementById('seatsChip');
     const remaining = data.max - data.registered;
-
     if (data.full) {
       document.getElementById('fullOverlay').classList.add('show');
       chip.textContent = '名额已满';
@@ -929,12 +983,10 @@ async function checkCapacity() {
       chip.textContent = `剩余名额：${remaining} / ${data.max}`;
     }
   } catch (err) {
-    // Silently fail — don't block the form if the check fails
     document.getElementById('seatsChip').textContent = '名额查询失败';
     console.warn('Capacity check failed:', err);
   }
 }
-
 
 // ── STATE ──
 let currentStep=0;
@@ -943,13 +995,9 @@ let receiptDataUrl=null,receiptFileName=null,receiptFileType=null;
 let currentReceiptData=null;
 
 // ── MALAYSIAN IC VALIDATION ──
-// Format: YYMMDD-PB-####
-// YYMMDD = birthdate, PB = 2-digit state/country code, #### = 4-digit sequence
 const MY_IC_REGEX = /^\d{6}-\d{2}-\d{4}$/;
-
 function validateMyIC(value) {
   if (!MY_IC_REGEX.test(value)) return false;
-  // Validate the date portion (YYMMDD)
   const [datePart] = value.split('-');
   const mm = parseInt(datePart.substring(2, 4), 10);
   const dd = parseInt(datePart.substring(4, 6), 10);
@@ -957,24 +1005,13 @@ function validateMyIC(value) {
 }
 
 // ── CHINESE NAME VALIDATION ──
-// Regex: CJK Unified Ideographs (common) + Extension A
 const CHINESE_REGEX = /^[\u4E00-\u9FFF\u3400-\u4DBF]+$/u;
-// IME composition state per field id
 const composingState = {};
 
-/**
- * Strip non-Chinese characters from value.
- * Returns cleaned string.
- */
 function stripNonChinese(val) {
   return val.replace(/[^\u4E00-\u9FFF\u3400-\u4DBF]/gu, '');
 }
 
-/**
- * Validate a Chinese-name field.
- * Shows/hides the error hint and applies visual classes.
- * Returns true if valid.
- */
 function validateChineseName(inputEl, errEl) {
   const val = inputEl.value.trim();
   let msg = '';
@@ -998,34 +1035,22 @@ function validateChineseName(inputEl, errEl) {
   }
 }
 
-/**
- * Attach Chinese-name validation listeners to an input element.
- * Handles IME composition (pinyin / zhuyin / cangjie) correctly.
- */
 function attachChineseNameListeners(inputEl, errEl) {
   composingState[inputEl.id] = false;
-
-  inputEl.addEventListener('compositionstart', () => {
-    composingState[inputEl.id] = true;
-  });
-
+  inputEl.addEventListener('compositionstart', () => { composingState[inputEl.id] = true; });
   inputEl.addEventListener('compositionend', () => {
     composingState[inputEl.id] = false;
-    // After IME commits, strip any stray non-Chinese chars then validate
     const cleaned = stripNonChinese(inputEl.value);
     if (inputEl.value !== cleaned) inputEl.value = cleaned;
     validateChineseName(inputEl, errEl);
   });
-
   inputEl.addEventListener('input', () => {
-    if (composingState[inputEl.id]) return; // wait for compositionend
+    if (composingState[inputEl.id]) return;
     const cleaned = stripNonChinese(inputEl.value);
     if (inputEl.value !== cleaned) inputEl.value = cleaned;
     validateChineseName(inputEl, errEl);
   });
-
   inputEl.addEventListener('blur', () => {
-    // Always validate on blur, even mid-composition
     composingState[inputEl.id] = false;
     const cleaned = stripNonChinese(inputEl.value);
     if (inputEl.value !== cleaned) inputEl.value = cleaned;
@@ -1033,22 +1058,16 @@ function attachChineseNameListeners(inputEl, errEl) {
   });
 }
 
-
-
-// Auto-format Malaysian IC: insert dashes at positions 6 and 9
+// ── IC AUTO-FORMAT ──
 const icInput = document.getElementById('consent_ic');
 const icErrEl = document.getElementById('err-consent_ic');
 
 icInput.addEventListener('input', function () {
-  // Strip everything except digits
   let digits = this.value.replace(/\D/g, '').substring(0, 12);
-  // Re-insert dashes
   if (digits.length > 6) digits = digits.substring(0, 6) + '-' + digits.substring(6);
   if (digits.length > 9) digits = digits.substring(0, 9) + '-' + digits.substring(9);
   this.value = digits;
-
-  // Live validation feedback once fully typed
-  if (digits.length === 14) {  // 12 digits + 2 dashes
+  if (digits.length === 14) {
     if (!validateMyIC(digits)) {
       icErrEl.textContent = '请输入有效的大马身份证号码格式（例如：900101-14-5678）。';
       icErrEl.classList.add('show');
@@ -1081,6 +1100,19 @@ icInput.addEventListener('blur', function () {
   }
 });
 
+// ── ATTENDANCE TIMES TOGGLE ──
+function toggleAttendanceTimes() {
+  const val = document.querySelector('input[name="attendance_history"]:checked')?.value;
+  const wrap = document.getElementById('attendanceTimesWrap');
+  if (val === 'yes') {
+    wrap.style.display = 'block';
+  } else {
+    wrap.style.display = 'none';
+    // Clear any selected times
+    document.querySelectorAll('input[name="attendance_times"]').forEach(r => r.checked = false);
+    document.getElementById('err-attendance_times').classList.remove('show');
+  }
+}
 
 // ── STEPPER UPDATE ──
 function updateStepper(){
@@ -1096,7 +1128,6 @@ function updateStepper(){
   document.getElementById('progressFill').style.width=pct+'%';
   document.getElementById('progressPct').textContent=pct+'%';
   document.getElementById('progressStepLabel').textContent='步骤 '+(currentStep+1)+' / '+TOTAL_STEPS;
-
   const btnBack=document.getElementById('btnBack');
   const btnNext=document.getElementById('btnNext');
   btnBack.style.display=currentStep>0?'flex':'none';
@@ -1125,7 +1156,6 @@ function showPanel(idx, dir = 'right') {
     if (dir === 'left') panel.classList.add('slide-left');
     panel.classList.add('active');
   }
-  // Re-init signature canvas once the panel is visible and has real dimensions
   if (idx === 4) {
     requestAnimationFrame(() => initSig());
   }
@@ -1146,7 +1176,29 @@ function toggleEmergency(){
 }
 
 // ── DOB / AGE ──
+// Mobile browsers (iOS Safari, Android Chrome) sometimes ignore min/max on
+// date inputs. We clamp the value in JS so the constraint is always enforced.
 document.getElementById('dob').addEventListener('change',function(){
+  if(!this.value) return;
+  const MIN='2013-01-01', MAX='2019-12-31';
+  const errEl=document.getElementById('err-dob');
+
+  // Clamp out-of-range dates silently
+  if(this.value < MIN){
+    this.value = MIN;
+    errEl.textContent='出生日期最早为 2013 年 1 月 1 日。';
+    errEl.classList.add('show');
+    document.getElementById('ageBadgeWrap').style.display='none';
+    return;
+  }
+  if(this.value > MAX){
+    this.value = MAX;
+    errEl.textContent='出生日期最晚为 2019 年 12 月 31 日。';
+    errEl.classList.add('show');
+    document.getElementById('ageBadgeWrap').style.display='none';
+    return;
+  }
+
   const dob=new Date(this.value);
   const campDate=new Date('2026-08-29');
   let age=campDate.getFullYear()-dob.getFullYear();
@@ -1157,7 +1209,6 @@ document.getElementById('dob').addEventListener('change',function(){
   const ok=age>=8&&age<=12;
   wrap.innerHTML=`<div class="age-badge ${ok?'ok':'bad'}">${ok?'✓':'✗'} 营时年龄：${age} 岁 ${ok?'（符合资格）':'（不符合 8–12 岁要求）'}</div>`;
   document.getElementById('age_hidden').value=age;
-  const errEl=document.getElementById('err-dob');
   if(!ok){
     errEl.textContent='年龄不符合报名资格（8–12 岁）。';
     errEl.classList.add('show');
@@ -1220,7 +1271,6 @@ let sigMode='handwrite';
 let hasSig=false;
 let hasTypedSig=false;
 
-
 function switchSigMode(mode) {
   sigMode = mode;
   document.getElementById('sigPanelHandwrite').style.display = mode === 'handwrite' ? 'block' : 'none';
@@ -1238,7 +1288,6 @@ function switchSigMode(mode) {
   }
 }
 
-// Canvas setup
 function setupCanvas(canvas){
   const rect=canvas.getBoundingClientRect();
   const dpr=window.devicePixelRatio||1;
@@ -1247,7 +1296,7 @@ function setupCanvas(canvas){
   const ctx=canvas.getContext('2d');
   ctx.scale(dpr,dpr);
   ctx.strokeStyle='#0F0F0F';
-  ctx.lineWidth=2;
+  ctx.lineWidth=2.2;
   ctx.lineCap='round';
   ctx.lineJoin='round';
   return ctx;
@@ -1346,6 +1395,12 @@ function buildReview(){
   const emergName=emergSame==='yes'?v('parent_name'):v('emergency_name');
   const emergPhone=emergSame==='yes'?v('parent_phone'):v('emergency_phone');
 
+  const attendanceVal = rv('attendance_history');
+  const attendanceTimes = rv('attendance_times');
+  const attendanceDisplay = attendanceVal === 'yes'
+    ? `有（参加过 ${attendanceTimes || '—'}）`
+    : '否，第一次';
+
   const html=`
     <div class="review-card">
       <div class="review-section-label">营员资料</div>
@@ -1366,7 +1421,7 @@ function buildReview(){
     <div class="review-card">
       <div class="review-section-label">营队资料</div>
       <div class="review-row"><span class="review-key">T-shirt 尺寸</span><span class="review-val">${v('tshirt_size')}</span></div>
-      <div class="review-row"><span class="review-key">曾参加</span><span class="review-val">${v('attendance_history')==='yes'?'有，曾参加':'否，第一次'}</span></div>
+      <div class="review-row"><span class="review-key">曾参加</span><span class="review-val">${attendanceDisplay}</span></div>
       <div class="review-row"><span class="review-key">付款凭证</span><span class="review-val">${receiptFileName||'—'}</span></div>
     </div>
     <div class="fee-row">
@@ -1401,7 +1456,6 @@ function validateStep(step){
   let ok=true;
 
   if(step===1){
-    // Chinese name (camper)
     const cnEl=document.getElementById('chinese_name');
     const cnErr=document.getElementById('err-chinese_name');
     const cnVal=cnEl.value.trim();
@@ -1420,16 +1474,10 @@ function validateStep(step){
       cnEl.classList.remove('invalid');
       cnEl.classList.add('valid');
     }
-
-    // English name
     if(!v('english_name').trim()){showErr('english_name','请输入英文姓名。');ok=false;}
     else clearErr('english_name');
-
-    // Gender
     if(!rv('gender')){showErr('gender','请选择性别。');ok=false;}
     else clearErr('gender');
-
-    // DOB
     const dobVal=v('dob');
     if(!dobVal){showErr('dob','请选择出生日期。');ok=false;}
     else {
@@ -1437,37 +1485,28 @@ function validateStep(step){
       if(isNaN(age)||age<8||age>12){showErr('dob','年龄不符合报名资格（8–12 岁）。');ok=false;}
       else clearErr('dob');
     }
-
-    // School
     if(!v('school').trim()){showErr('school','请填写就读学校。');ok=false;}
     else clearErr('school');
   }
 
   if(step===2){
-    // Parent name — must be Chinese characters
     const pnVal=v('parent_name').trim();
     if(!pnVal){showErr('parent_name','请填写家长/监护人中文姓名（必填）。');ok=false;}
     else if(!CHINESE_REGEX.test(pnVal)){showErr('parent_name','请输入纯中文姓名，不含英文、数字或符号。');ok=false;}
     else clearErr('parent_name');
-
     if(!rv('relationship')){showErr('relationship','请选择与学童关系。');ok=false;}
     else clearErr('relationship');
-
     const phone=v('parent_phone').replace(/[\s-]/g,'');
     if(!phone||!/^\+?\d{8,15}$/.test(phone)){showErr('parent_phone','请输入有效的手机号码。');ok=false;}
     else clearErr('parent_phone');
-
     const email=v('email');
     if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showErr('email','请输入有效的电子邮件地址。');ok=false;}
     else clearErr('email');
-
     if(!v('address').trim()){showErr('address','请填写住家地址。');ok=false;}
     else clearErr('address');
-
     const emergSame=document.querySelector('input[name="emergency_same"]:checked')?.value;
     if(!emergSame){showErr('emergency_same','请选择紧急联络人选项。');ok=false;}
     else clearErr('emergency_same');
-
     if(emergSame==='no'){
       const enVal=v('emergency_name').trim();
       if(!enVal){showErr('emergency_name','请填写紧急联络人中文姓名（必填）。');ok=false;}
@@ -1484,14 +1523,31 @@ function validateStep(step){
   if(step===3){
     if(!v('tshirt_size')){showErr('tshirt_size','请选择 T-shirt 尺寸。');ok=false;}
     else clearErr('tshirt_size');
-    if(!v('attendance_history')){showErr('attendance_history','请选择参营记录。');ok=false;}
-    else clearErr('attendance_history');
+
+    // Attendance history — now radio
+    const attVal = rv('attendance_history');
+    if(!attVal){showErr('attendance_history','请选择参营记录。');ok=false;}
+    else {
+      clearErr('attendance_history');
+      // If "yes", also require times selection
+      if(attVal === 'yes'){
+        const timesVal = rv('attendance_times');
+        if(!timesVal){
+          const errEl = document.getElementById('err-attendance_times');
+          errEl.textContent = '请选择参加过几次。';
+          errEl.classList.add('show');
+          ok=false;
+        } else {
+          document.getElementById('err-attendance_times').classList.remove('show');
+        }
+      }
+    }
+
     if(!currentReceiptData){showErr('receipt','请上传付款凭证截图。');ok=false;}
     else clearErr('receipt');
   }
 
   if(step===4){
-    // Consent parent name — must be Chinese
     const cpnEl=document.getElementById('consent_parent_name');
     const cpnErr=document.getElementById('err-consent_parent_name');
     const cpnVal=cpnEl.value.trim();
@@ -1510,27 +1566,24 @@ function validateStep(step){
       cpnErr.classList.remove('show');
       cpnEl.style.borderBottomColor='';
     }
-
-    // IC number
     const icEl  = document.getElementById('consent_ic');
-const icErr = document.getElementById('err-consent_ic');
-const icVal = icEl.value.trim();
-if (!icVal) {
-  icErr.textContent = '请填写身份证号码（必填）。';
-  icErr.classList.add('show');
-  icEl.style.borderBottomColor = 'var(--error)';
-  ok = false;
-} else if (!validateMyIC(icVal)) {
-  icErr.textContent = '请输入有效的大马身份证号码格式（例如：900101-14-5678）。';
-  icErr.classList.add('show');
-  icEl.style.borderBottomColor = 'var(--error)';
-  ok = false;
-} else {
-  icErr.textContent = '';
-  icErr.classList.remove('show');
-  icEl.style.borderBottomColor = 'var(--success)';
-}
-
+    const icErr = document.getElementById('err-consent_ic');
+    const icVal = icEl.value.trim();
+    if (!icVal) {
+      icErr.textContent = '请填写身份证号码（必填）。';
+      icErr.classList.add('show');
+      icEl.style.borderBottomColor = 'var(--error)';
+      ok = false;
+    } else if (!validateMyIC(icVal)) {
+      icErr.textContent = '请输入有效的大马身份证号码格式（例如：900101-14-5678）。';
+      icErr.classList.add('show');
+      icEl.style.borderBottomColor = 'var(--error)';
+      ok = false;
+    } else {
+      icErr.textContent = '';
+      icErr.classList.remove('show');
+      icEl.style.borderBottomColor = 'var(--success)';
+    }
     const sigData=getSigDataUrl();
     if(!sigData){
       showErr('signature','请完成签名后再提交。');ok=false;
@@ -1540,7 +1593,6 @@ if (!icVal) {
   }
 
   if(!ok){
-    // Scroll to first error
     const firstErr=document.querySelector('.error-hint.show, .invalid');
     if(firstErr)firstErr.scrollIntoView({behavior:'smooth',block:'center'});
   }
@@ -1573,40 +1625,36 @@ async function submitForm(){
   if(!validateStep(4))return;
 
   const sigDataUrl=getSigDataUrl();
+  const attendanceVal = rv('attendance_history');
+  const attendanceTimes = rv('attendance_times');
 
   const payload={
     timestamp:new Date().toISOString(),
-    // Camper
     chinese_name:v('chinese_name'),
     english_name:v('english_name'),
     gender:rv('gender'),
     dob:v('dob'),
     age:v('age_hidden'),
     school:v('school'),
-    // Parent
     parent_name:v('parent_name'),
     relationship:rv('relationship'),
     parent_phone:v('parent_phone'),
     email:v('email'),
     address:v('address'),
-    // Emergency
     emergency_same:document.querySelector('input[name="emergency_same"]:checked')?.value,
     emergency_name:document.querySelector('input[name="emergency_same"]:checked')?.value==='yes'?v('parent_name'):v('emergency_name'),
     emergency_phone:document.querySelector('input[name="emergency_same"]:checked')?.value==='yes'?v('parent_phone'):v('emergency_phone'),
     emergency_relationship:document.querySelector('input[name="emergency_same"]:checked')?.value==='yes'?rv('relationship'):rv('emergency_relationship'),
-    // Camp
     tshirt_size:v('tshirt_size'),
-    attendance_history:v('attendance_history'),
-    // Consent
+    attendance_history: attendanceVal,
+    attendance_times: attendanceVal === 'yes' ? attendanceTimes : '—',
     consent_parent_name:v('consent_parent_name'),
     consent_ic:v('consent_ic'),
     consent_role:v('consent_role'),
-    consent_child_name:  v('chinese_name'),  
-    // Payment
+    consent_child_name: v('chinese_name'),
     receipt_filename:receiptFileName,
     receipt_filetype:receiptFileType,
     receipt_data:currentReceiptData,
-    // Signature
     signature_data:sigDataUrl?sigDataUrl.split(',')[1]:null,
     fee:'RM 60.00'
   };
@@ -1617,7 +1665,6 @@ async function submitForm(){
     const resp=await fetch(API_ENDPOINT,{method:'POST',body:JSON.stringify(payload)});
     const data=await resp.json();
     document.getElementById('loadingOverlay').classList.remove('show');
-
     if(data.status==='success'||data.result==='success'){
       showSuccess(data);
     } else {
@@ -1631,7 +1678,7 @@ async function submitForm(){
 
 // ── SUCCESS ──
 function showSuccess(data){
-  const regId=data.receiptId ;
+  const regId=data.receiptId;
   document.getElementById('successId').textContent=regId;
   document.getElementById('successTime').textContent=new Date().toLocaleString('zh-MY');
   document.getElementById('successSummary').innerHTML=`
@@ -1649,11 +1696,17 @@ function showSuccess(data){
 }
 
 function buildPrintReceipt(regId){
+  const attendanceVal = rv('attendance_history');
+  const attendanceTimes = rv('attendance_times');
+  const attendanceDisplay = attendanceVal === 'yes'
+    ? `有（参加过 ${attendanceTimes || '—'}）`
+    : '否，第一次';
+
   document.getElementById('printReceipt').innerHTML=`
     <div class="pr-header">
-                        <img src="https://donate.093.org.tw/images/icon/093_logo.png"
-                    alt="Ling Jiou Mountain Buddhist Society Logo"
-                    style="height: 60px; width: auto; margin-bottom: 10px; display: inline-block;">
+      <img src="https://donate.093.org.tw/images/icon/093_logo.png"
+           alt="Ling Jiou Mountain Buddhist Society Logo"
+           style="height: 60px; width: auto; margin-bottom: 10px; display: inline-block;">
       <h1>小菩萨快乐学佛营 2026 — 报名确认</h1>
       <h2>灵鹫山马来西亚佛学会</h2>
       <p style="font-size:11px;color:#888;margin-top:4px">报名编号：${regId} · 日期：${new Date().toLocaleDateString('zh-MY')}</p>
@@ -1667,6 +1720,7 @@ function buildPrintReceipt(regId){
     <div class="pr-row"><span class="pr-k">联络电话</span>${v('parent_phone')}</div>
     <div class="pr-row"><span class="pr-k">电子邮件</span>${v('email')}</div>
     <div class="pr-row"><span class="pr-k">T-shirt 尺寸</span>${v('tshirt_size')}</div>
+    <div class="pr-row"><span class="pr-k">曾参加学佛营</span>${attendanceDisplay}</div>
     <div class="pr-row"><span class="pr-k">应缴营费</span><strong>RM 60.00</strong></div>
     <div class="pr-row"><span class="pr-k">活动日期</span>2026年 8月 29—30 日</div>
     <div class="pr-row"><span class="pr-k">活动地点</span>SJK(C) Subang 梳邦华小</div>
@@ -1674,49 +1728,35 @@ function buildPrintReceipt(regId){
 }
 
 function doPrint(){window.print();}
-
 function resetForm(){location.reload();}
 
-// ── SIG TYPED PANEL resize ──
+// ── RESIZE ──
 function resizeSigTypeCanvas(){
   const canvas=document.getElementById('sigCanvasType');
   if(canvas&&document.getElementById('sigPanelType').style.display!=='none'){
     renderTypedSig();
   }
 }
-window.addEventListener('resize',()=>{
-  initSig();
-  resizeSigTypeCanvas();
-});
+window.addEventListener('resize',()=>{ initSig(); resizeSigTypeCanvas(); });
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded',()=>{
   updateStepper();
   initSig();
 
-
-
-  // Attach Chinese-name validation to camper Chinese name field (Step 1)
   attachChineseNameListeners(
     document.getElementById('chinese_name'),
     document.getElementById('err-chinese_name')
   );
-
-  // Attach Chinese-name validation to parent/guardian name field (Step 2)
   attachChineseNameListeners(
     document.getElementById('parent_name'),
     document.getElementById('err-parent_name')
   );
-
-  // Attach Chinese-name validation to emergency contact name field (Step 2, conditional)
   attachChineseNameListeners(
     document.getElementById('emergency_name'),
     document.getElementById('err-emergency_name')
   );
 
-  // Attach Chinese-name validation to consent parent name field (Step 4)
-  // Note: consent_parent_name uses inline style for border-bottom, so we need
-  // a slightly different visual feedback approach
   const consentParentInput = document.getElementById('consent_parent_name');
   const consentParentErr   = document.getElementById('err-consent_parent_name');
   composingState['consent_parent_name'] = false;
@@ -1728,7 +1768,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     composingState['consent_parent_name'] = false;
     const cleaned = stripNonChinese(consentParentInput.value);
     if (consentParentInput.value !== cleaned) consentParentInput.value = cleaned;
-    // Validate and show inline error
     const val = consentParentInput.value.trim();
     if (val && !CHINESE_REGEX.test(val)) {
       consentParentErr.textContent = '请输入纯中文姓名，不含英文、数字或符号。';
