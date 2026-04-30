@@ -1297,22 +1297,9 @@ let sigMode='handwrite';
 let hasSig=false;
 let hasTypedSig=false;
 
-function switchSigMode(mode) {
-  sigMode = mode;
-  document.getElementById('sigPanelHandwrite').style.display = mode === 'handwrite' ? 'block' : 'none';
-  document.getElementById('sigPanelType').style.display      = mode === 'type'       ? 'block' : 'none';
-  const th = document.getElementById('tabHandwrite');
-  const tt = document.getElementById('tabType');
-  if (mode === 'handwrite') {
-    th.style.background = 'var(--brand)'; th.style.color = '#fff';
-    tt.style.background = '#fff';         tt.style.color = 'var(--text-secondary)';
-    requestAnimationFrame(() => initSig());
-  } else {
-    tt.style.background = 'var(--brand)'; tt.style.color = '#fff';
-    th.style.background = '#fff';         th.style.color = 'var(--text-secondary)';
-    requestAnimationFrame(() => renderTypedSig());
-  }
-}
+// --- DocuSign-level smooth signature: Bezier smoothing ---
+let sigCanvas=document.getElementById('sigCanvas');
+let sigCtx, drawing=false, lastPoint=null, points=[];
 
 function setupCanvas(canvas){
   const rect=canvas.getBoundingClientRect();
@@ -1328,12 +1315,8 @@ function setupCanvas(canvas){
   return ctx;
 }
 
-const sigCanvas=document.getElementById('sigCanvas');
-let sigCtx,drawing=false,lastX,lastY;
-
 function initSig(){
   sigCtx=setupCanvas(sigCanvas);
-  // Fix: Remove previous listeners to avoid stacking
   sigCanvas.onpointerdown = null;
   sigCanvas.onpointermove = null;
   sigCanvas.onpointerup = null;
@@ -1342,7 +1325,6 @@ function initSig(){
   sigCanvas.ontouchmove = null;
   sigCanvas.ontouchend = null;
 
-  // Use pointer events for better mobile support
   sigCanvas.addEventListener('pointerdown', pointerDown, {passive: false});
   sigCanvas.addEventListener('pointermove', pointerMove, {passive: false});
   sigCanvas.addEventListener('pointerup', pointerUp, {passive: false});
@@ -1365,21 +1347,48 @@ function getPosPointer(e,canvas){
 function pointerDown(e){
   e.preventDefault();
   drawing=true;
+  points=[];
   const p=getPosPointer(e,sigCanvas);
-  lastX=p.x;lastY=p.y;
-  sigCtx.beginPath();sigCtx.moveTo(lastX,lastY);
+  points.push(p);
+  lastPoint=p;
+  sigCtx.beginPath();
+  sigCtx.moveTo(p.x,p.y);
 }
 function pointerMove(e){
   if(!drawing)return;
   e.preventDefault();
   const p=getPosPointer(e,sigCanvas);
-  sigCtx.lineTo(p.x,p.y);sigCtx.stroke();
-  lastX=p.x;lastY=p.y;
+  points.push(p);
+  if(points.length>2){
+    // Use the last 3 points to draw a quadratic Bezier curve
+    const len=points.length;
+    const prev=points[len-3];
+    const curr=points[len-2];
+    const next=points[len-1];
+    const cpx=(curr.x+next.x)/2, cpy=(curr.y+next.y)/2;
+    sigCtx.quadraticCurveTo(curr.x,curr.y,cpx,cpy);
+    sigCtx.stroke();
+  }else if(points.length===2){
+    sigCtx.lineTo(p.x,p.y);
+    sigCtx.stroke();
+  }
+  lastPoint=p;
   hasSig=true;
   document.getElementById('sigWrap').classList.add('has-sig');
 }
 function pointerUp(e){
+  if(!drawing) return;
   drawing=false;
+  // Final smoothing for the last segment
+  if(points.length>2){
+    const len=points.length;
+    const prev=points[len-3];
+    const curr=points[len-2];
+    const next=points[len-1];
+    sigCtx.quadraticCurveTo(curr.x,curr.y,next.x,next.y);
+    sigCtx.stroke();
+  }
+  points=[];
 }
 
 // Remove old mouse/touch listeners if present
