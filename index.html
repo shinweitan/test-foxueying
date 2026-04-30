@@ -42,6 +42,7 @@ body{
   background:var(--bg);
   color:var(--text-primary);
   min-height:100vh;
+  min-height:100dvh;
   line-height:1.6;
 }
 
@@ -112,7 +113,10 @@ body{
 .progress-label{font-size:11px;color:var(--text-tertiary);margin-bottom:6px;display:flex;justify-content:space-between;}
 
 /* ── MAIN CONTAINER ── */
-.form-wrap{max-width:680px;margin:0 auto;padding:20px 24px 100px;}
+.form-wrap{
+  padding:20px 24px;
+  padding-bottom:calc(90px + env(safe-area-inset-bottom));
+}
 
 /* ── STEP PANEL ── */
 .step-panel{display:none;animation:slideIn 0.3s cubic-bezier(0.4,0,0.2,1);}
@@ -357,9 +361,17 @@ canvas{
 
 /* ── NAV BUTTONS ── */
 .nav-bar{
-  position:fixed;bottom:0;left:0;right:0;
-  background:#fff;border-top:1px solid var(--border);
-  padding:12px 24px 16px;z-index:50;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#fff;
+  border-top:1px solid var(--border);
+  padding:12px 24px;
+  padding-bottom:calc(12px + env(safe-area-inset-bottom));
+  z-index:999; /* increase */
+    transform: translateZ(0);
+  will-change: transform;
 }
 .nav-inner{
   max-width:680px;margin:0 auto;
