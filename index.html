@@ -294,25 +294,38 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
   background:transparent;color:var(--text-tertiary);
   border-bottom-color:#ddd;cursor:default;
 }
-
 /* ── SIGNATURE ── */
-.sig-wrap{
-  border:1.5px solid var(--border);border-radius:var(--radius);
-  overflow:hidden;background:#fff;position:relative;
+.sig-wrap {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  position: relative;
 }
-.sig-wrap.has-sig{border-color:#10B981;}
-canvas{
-  display:block;width:100%;height: 200px;cursor:crosshair;
-  touch-action:none;
+
+.sig-wrap.has-sig {
+  border-color: #10B981;
 }
-.sig-actions{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:10px 14px;border-top:1px solid var(--border);
-  background:#FAFAF8;gap:10px;
+
+canvas {
+  display: block;
+  width: 100%;       /* Fills the container width */
+  height: 200px;     /* Set a consistent height */
+  cursor: crosshair;
+  touch-action: none; /* Crucial for mobile scrolling prevention */
 }
-.sig-wrap canvas {
-  height: 180px;
+
+.sig-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  background: #FAFAF8;
+  gap: 10px;
 }
+
+
 /* ── REDO / CLEAR BUTTON — prominent ── */
 .clear-btn{
   display:flex;align-items:center;gap:6px;
@@ -1333,19 +1346,30 @@ function switchSigMode(mode) {
 }
 
 let pad;
-function initSig(){
+function initSig() {
   const canvas = document.getElementById('sigCanvas');
-  // Resize canvas for device pixel ratio
   const rect = canvas.getBoundingClientRect();
   const dpr = window.devicePixelRatio || 1;
+
+  // 1. Set the INTERNAL resolution
+  // We use rect.height instead of getAttribute to ensure it matches the CSS exactly
   canvas.width = rect.width * dpr;
-  canvas.height = parseInt(canvas.getAttribute('height')) * dpr;
-  canvas.getContext('2d').scale(dpr, dpr);
+  canvas.height = rect.height * dpr;
+
+  // 2. Set the VISUAL size (must be in px for the math to stay consistent)
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = rect.height + 'px';
+
+  const ctx = canvas.getContext('2d');
+  
+  // 3. Reset transforms and scale for High DPI screens
+  ctx.setTransform(1, 0, 0, 1, 0, 0); 
+  ctx.scale(dpr, dpr);
 
   if (pad) {
     pad.off();
-    pad = null;
   }
+
   pad = new SignaturePad(canvas, {
     minWidth: 2.2,
     maxWidth: 2.2,
@@ -1355,10 +1379,11 @@ function initSig(){
 
   pad.onEnd = function() {
     hasSig = !pad.isEmpty();
+    const wrap = document.getElementById('sigWrap');
     if (hasSig) {
-      document.getElementById('sigWrap').classList.add('has-sig');
+      wrap.classList.add('has-sig');
     } else {
-      document.getElementById('sigWrap').classList.remove('has-sig');
+      wrap.classList.remove('has-sig');
     }
   };
 }
