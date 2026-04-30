@@ -309,10 +309,10 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 
 canvas {
   display: block;
-  width: 100%;       /* Fills the container width */
-  height: 200px;     /* Set a consistent height */
+  width: 100%;
+  height: 200px; /* Default height */
   cursor: crosshair;
-  touch-action: none; /* Crucial for mobile scrolling prevention */
+  touch-action: none; /* Prevents scrolling while signing */
 }
 
 .sig-actions {
@@ -505,7 +505,7 @@ canvas {
   .form-card{padding:16px;}
   .nav-bar{padding:10px 16px 14px;}
   /* Signature canvas: shorter height on mobile for easier signing */
-  canvas#sigCanvas{ height:110px !important; }
+  canvas#sigCanvas{ height:120px !important; }
   .sig-hint{ display:none; }
 }
 </style>
@@ -1348,33 +1348,27 @@ function switchSigMode(mode) {
 let pad;
 function initSig() {
   const canvas = document.getElementById('sigCanvas');
+  if (!canvas) return;
+
   const rect = canvas.getBoundingClientRect();
   const dpr = window.devicePixelRatio || 1;
 
-  // 1. Set the INTERNAL resolution
-  // We use rect.height instead of getAttribute to ensure it matches the CSS exactly
+  // This part fixes the alignment/offset issue
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
-
-  // 2. Set the VISUAL size (must be in px for the math to stay consistent)
-  canvas.style.width = rect.width + 'px';
-  canvas.style.height = rect.height + 'px';
-
-  const ctx = canvas.getContext('2d');
   
-  // 3. Reset transforms and scale for High DPI screens
-  ctx.setTransform(1, 0, 0, 1, 0, 0); 
-  ctx.scale(dpr, dpr);
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset scale
+  ctx.scale(dpr, dpr); // Scale for high-resolution displays
 
   if (pad) {
-    pad.off();
+    pad.off(); // Clean up old instance if it exists
   }
 
   pad = new SignaturePad(canvas, {
-    minWidth: 2.2,
-    maxWidth: 2.2,
-    penColor: '#0F0F0F',
-    backgroundColor: 'rgba(0,0,0,0)'
+    minWidth: 1.5,
+    maxWidth: 2.5,
+    penColor: '#0F0F0F'
   });
 
   pad.onEnd = function() {
@@ -1786,7 +1780,12 @@ function resizeSigTypeCanvas(){
     renderTypedSig();
   }
 }
-window.addEventListener('resize',()=>{ initSig(); resizeSigTypeCanvas(); });
+window.addEventListener('resize', () => {
+  // Only re-init if the canvas is actually visible to avoid 0-width errors
+  if(document.getElementById('panel-4').classList.contains('active')) {
+    initSig();
+  }
+});
 
 
 // ── INIT ──
