@@ -1239,6 +1239,59 @@ dobInput.addEventListener('change',function(){
   }
 });
 
+
+
+// ── RECEIPT UPLOAD ──
+document.getElementById('receipt').addEventListener('change',function(){
+  const file=this.files[0];
+  const errEl=document.getElementById('err-receipt');
+  if(!file)return;
+  if(file.size>5*1024*1024){
+    errEl.textContent='文件大小不能超过 5MB。';
+    errEl.classList.add('show');
+    this.value='';
+    return;
+  }
+  const allowed=['image/jpeg','image/png','image/gif','image/webp','application/pdf'];
+  if(!allowed.includes(file.type)){
+    errEl.textContent='仅支持 JPG、PNG、GIF、WEBP、PDF 文件。';
+    errEl.classList.add('show');
+    this.value='';
+    return;
+  }
+  errEl.classList.remove('show');
+  receiptFileName=file.name;
+  receiptFileType=file.type;
+  const zone=document.getElementById('uploadZone');
+  zone.classList.add('has-file');
+  const nameEl=document.getElementById('uploadName');
+  nameEl.textContent='✓ '+file.name;
+  nameEl.style.display='block';
+  const reader=new FileReader();
+  reader.onload=e=>{
+    receiptDataUrl=e.target.result;
+    currentReceiptData=e.target.result.split(',')[1];
+  };
+  reader.readAsDataURL(file);
+});
+
+// Drag-drop
+const uploadZone=document.getElementById('uploadZone');
+uploadZone.addEventListener('dragover',e=>{e.preventDefault();uploadZone.classList.add('dragover');});
+uploadZone.addEventListener('dragleave',()=>uploadZone.classList.remove('dragover'));
+uploadZone.addEventListener('drop',e=>{
+  e.preventDefault();uploadZone.classList.remove('dragover');
+  const file=e.dataTransfer.files[0];
+  if(file){
+    const dt=new DataTransfer();dt.items.add(file);
+    document.getElementById('receipt').files=dt.files;
+    document.getElementById('receipt').dispatchEvent(new Event('change'));
+  }
+});
+
+
+
+
 // ── SIGNATURE ──
 let sigMode='handwrite';
 let hasSig=false;
